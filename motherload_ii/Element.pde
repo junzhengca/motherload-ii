@@ -1,18 +1,9 @@
-class Element{
-  
-  int x,y,hardness,value,size;
+class Element {
+
+  int x, y, hardness, value, size;
   color theColor;
-  
-  
- Element(int _x){
-   
-  
-  
-   
-   
- }
-  
-  
-  
-  
+
+
+  Element(int _x) {
+  }
 }
