@@ -5,5 +5,6 @@ class Element {
 
 
   Element(int _x) {
+    x = _x;
   }
 }

@@ -1,4 +1,5 @@
 class Dirt extends Element {
-   Dirt(int x){ //this code does not work
+   Dirt(){ //this code does not work
+     super(1);
    }
 }
