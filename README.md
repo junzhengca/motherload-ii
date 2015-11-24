@@ -1,1 +1,3 @@
 # motherload-ii
+## License
+MIT
