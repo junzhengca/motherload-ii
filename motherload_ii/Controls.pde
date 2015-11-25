@@ -1,6 +1,7 @@
 class Button {
   Engine e;
   float x,y,w,h;
+  boolean mouseOver = false;
   Button(Engine e, float x,float y,float w,float h){
     this.x = x;
     this.y = y;
@@ -9,7 +10,17 @@ class Button {
     this.e = e;
   }
   
-  void tick(float ms){}
+  void tick(float ms){
+    checkCollision();
+  }
+  
+  void checkCollision(){
+    if(mouseX > e.actualPosition(x,y)[0] && mouseX < e.actualPosition(x,y)[0] + e.actualSize(w) && mouseY > e.actualPosition(x,y)[1] && mouseY < e.actualPosition(x,y)[1] + e.actualSize(h)){
+      this.mouseOver = true;
+    } else {
+      this.mouseOver = false;
+    }
+  }
   
 }
 
@@ -19,7 +30,12 @@ class testButton extends Button {
   }
   
   void tick(float ms){
-    fill(255,0,0);
-    rect(e.actualPosition(30,30)[0],e.actualPosition(30,30)[1],e.actualSize(w),e.actualSize(h));
+    super.tick(ms);
+    if(mouseOver){
+      fill(255,0,0);
+    } else {
+      fill(0,255,0);
+    }
+    rect(e.actualPosition(x,y)[0],e.actualPosition(x,y)[1],e.actualSize(w),e.actualSize(h));
   }
 }
