@@ -1,5 +1,8 @@
 class Dirt extends Element {
-   Dirt(){ //this code does not work
-     super(1);
+  
+  
+  
+   Dirt(Engine e){ 
+     super(1,1,0,1,color(107,68,22),e);
    }
 }
