@@ -20,6 +20,6 @@ class testButton extends Button {
   
   void tick(float ms){
     fill(255,0,0);
-    rect(e.actualPosition(30,30)[0],e.actualPosition(30,30)[1],e.actualSize(w),e.actualSize(h));
+    //rect(e.actualPosition(30,30)[0],e.actualPosition(30,30)[1],e.actualSize(w),e.actualSize(h));
   }
 }
