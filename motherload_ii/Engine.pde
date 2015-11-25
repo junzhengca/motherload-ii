@@ -1,9 +1,11 @@
 class Engine {
   float w, h, scaleRatio;
   float actualW;
+  testButton b;
   Engine() {
     this.actualW = 1000.f;
     updateScreenSize();
+    b = new testButton(this,30,30,100,40);
   }
 
   float actualSize(float value) {
@@ -45,5 +47,8 @@ class Engine {
     fill(0, 155, 0);
     textAlign(LEFT, TOP);
     text("msValue - " + str(ms) + " size - " + str(width) + "x" + str(height), actualPosition(20, 0)[0], actualPosition(0, 20)[1]);
+    
+    b.tick(ms);
+    //Draw things here
   }
 }
