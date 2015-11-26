@@ -20,7 +20,7 @@ class Element {
 
   void display() {
     if (isDrawn) {
-      rectMode(CENTER);
+      //rectMode(CENTER);
       fill(theColor);
       rect(e.actualPosition(x, y)[0], e.actualPosition(x, y)[1], e.actualSize(size), e.actualSize(size));
     }
