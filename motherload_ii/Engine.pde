@@ -9,6 +9,7 @@ class Engine {
     b = new testButton(this,350,500,300,75);
     em = new ElementManager(this);
     em.createMap();
+
   }
 
   float actualSize(float value) {
@@ -41,6 +42,7 @@ class Engine {
   void drawBackground() {
     fill(225);
     rect(actualPosition(0, 0)[0], actualPosition(0, 0)[1], actualSize(actualW), actualSize(actualW));
+    em.display();
   }
 
   void tick(float ms) {

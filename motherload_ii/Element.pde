@@ -1,6 +1,6 @@
 class Element {
 
-  int x, y, hardness, value, size;
+  int x, y, hardness, value, size,offset;
   color theColor;
   Engine e;
   boolean isDrawn;
@@ -14,6 +14,7 @@ class Element {
     theColor = _color;
     e = theEngine;
     isDrawn = true;
+    offset = 0;
   }
 
 
@@ -22,6 +23,7 @@ class Element {
     if (isDrawn) {
       //rectMode(CENTER);
       fill(theColor);
+      noStroke();
       rect(e.actualPosition(x, y)[0], e.actualPosition(x, y)[1], e.actualSize(size), e.actualSize(size));
     }
   }
