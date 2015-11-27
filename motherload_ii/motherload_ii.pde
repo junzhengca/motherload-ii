@@ -12,3 +12,11 @@ void draw(){
   e.tick(millis() - lastMillis);
   lastMillis = millis();
 }
+
+void keyPressed(){
+  e.player.handleKeyPressed();
+}
+
+void keyReleased(){
+  e.player.handleKeyReleased();
+}
