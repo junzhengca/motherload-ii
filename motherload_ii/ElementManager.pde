@@ -46,9 +46,8 @@ void destroyblock(int xIndex, int yIndex){
 
 
 String checkBlockType(int xIndex, int yIndex){
-  return
-  
-  
+  String className = split(elements[xIndex][yIndex].getClass().getName(),"$")[1]; //Get object's class name
+  return className;
 }
 
 }

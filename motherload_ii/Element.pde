@@ -27,4 +27,15 @@ class Element {
       rect(e.actualPosition(x, y)[0], e.actualPosition(x, y)[1], e.actualSize(size), e.actualSize(size));
     }
   }
+  
+  
+  void checkOnScreen(){
+   if(offset+500 > this.x){
+     isDrawn = true;
+   }
+   else{
+     isDrawn = false;
+  }
+  }
+  
 }
