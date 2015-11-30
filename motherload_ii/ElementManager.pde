@@ -1,7 +1,8 @@
 class ElementManager {
 
   Element[][] elements;
-  int w, h, randomNum; 
+  int w, h, randomNum;
+  float offset = 0;
   Engine e;
 
 
@@ -18,18 +19,22 @@ class ElementManager {
       for (int x = 0; x <10; x ++) {
         randomNum = int(random(1, 7));
         if (randomNum == 1 || randomNum == 2 || randomNum ==3) {
-          elements[x][y] = new Dirt(e,x*100,y*100);
+          elements[x][y] = new Dirt(e,x*100,y*100,this);
         } else if (randomNum == 4) {
-          elements[x][y] = new Iron(e,x*100,y*100);
+          elements[x][y] = new Iron(e,x*100,y*100,this);
         } else if (randomNum == 5) {
-          elements[x][y] = new Gold(e,x*100,y*100);
+          elements[x][y] = new Gold(e,x*100,y*100,this);
         }
         else if (randomNum == 6){
-          elements[x][y] = new BlankTile(e,x*100,y*100);
+          elements[x][y] = new BlankTile(e,x*100,y*100,this);
           
         }
       }
     }
+  }
+  
+  void setOffset(float val){
+    this.offset = val;
   }
 
   void display() {
@@ -41,7 +46,7 @@ class ElementManager {
 }
 
 void destroyblock(int xIndex, int yIndex){
-  elements[xIndex][yIndex] = new BlankTile(e,xIndex*100,yIndex*100);
+  elements[xIndex][yIndex] = new BlankTile(e,xIndex*100,yIndex*100,this);
 }
 
 

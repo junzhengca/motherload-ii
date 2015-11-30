@@ -51,7 +51,11 @@ class Engine {
 
     //b.tick(ms);
     if (mainMenu != null) mainMenu.tick(ms);
-    else em.display();
+    else {
+      em.display();
+      em.offset--;
+    }
+    
     currentFrame++;
     textSize(this.actualSize(30));
     fill(0, 155, 0);

@@ -4,8 +4,9 @@ class Element {
   color theColor;
   Engine e;
   boolean isDrawn;
-
-  Element(int _x, int _y, int _value, int _hardness, color _color, Engine theEngine) {
+  ElementManager em;
+  
+  Element(int _x, int _y, int _value, int _hardness, color _color, Engine theEngine, ElementManager _em) {
     x = _x;
     y = _y;
     size = 100;
@@ -15,6 +16,7 @@ class Element {
     e = theEngine;
     isDrawn = true;
     offset = 0;
+    em = _em;
   }
 
 
@@ -24,7 +26,7 @@ class Element {
       //rectMode(CENTER);
       fill(theColor);
       noStroke();
-      rect(e.actualPosition(x, y)[0], e.actualPosition(x, y)[1], e.actualSize(size), e.actualSize(size));
+      rect(e.actualPosition(x, y)[0], e.actualPosition(x, y + em.offset)[1], e.actualSize(size), e.actualSize(size));
     }
   }
   
