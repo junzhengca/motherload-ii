@@ -10,6 +10,7 @@ class Engine {
     updateScreenSize();
     em = new ElementManager(this);
     em.createMap();
+    mainMenu = new MainMenu(this);
   }
 
   float actualSize(float value) {
@@ -42,7 +43,6 @@ class Engine {
   void drawBackground() {
     fill(0);
     rect(actualPosition(0, 0)[0], actualPosition(0, 0)[1], actualSize(actualW), actualSize(actualW));
-    em.display();
   }
 
   void tick(float ms) {
@@ -51,7 +51,7 @@ class Engine {
 
     //b.tick(ms);
     if (mainMenu != null) mainMenu.tick(ms);
-
+    else em.display();
     currentFrame++;
     textSize(this.actualSize(30));
     fill(0, 155, 0);
