@@ -1,11 +1,14 @@
 class Engine {
   float w, h, scaleRatio;
   float actualW;
-  testButton b;
+  int currentFrame = 0;
+  //testButton b;
+  MainMenu mainMenu;
   Engine() {
     this.actualW = 1000.f;
     updateScreenSize();
-    b = new testButton(this,350,500,300,75);
+    //b = new testButton(this,350,500,300,75);
+    mainMenu = new MainMenu(this);
   }
 
   float actualSize(float value) {
@@ -36,18 +39,22 @@ class Engine {
 
 
   void drawBackground() {
-    fill(225);
+    fill(0);
     rect(actualPosition(0, 0)[0], actualPosition(0, 0)[1], actualSize(actualW), actualSize(actualW));
   }
 
   void tick(float ms) {
     updateScreenSize();
     drawBackground();
+
+    //b.tick(ms);
+    if (mainMenu != null) mainMenu.tick(ms);
+
+    currentFrame++;
     textSize(this.actualSize(30));
     fill(0, 155, 0);
     textAlign(LEFT, TOP);
-    text("msValue - " + str(ms) + " size - " + str(width) + "x" + str(height), actualPosition(20, 0)[0], actualPosition(0, 20)[1]);
+    //text("msValue - " + str(ms) + " size - " + str(width) + "x" + str(height) + " fc " + str(currentFrame), actualPosition(20, 0)[0], actualPosition(0, 20)[1]);
     
-    b.tick(ms);
   }
 }
