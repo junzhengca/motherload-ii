@@ -1,8 +1,8 @@
 class Player {
  
   Engine e;
-  //PImage player;
-  Gif player;
+  PImage player;
+  //Gif player;
   float x, y, xSpeed, ySpeed, size, drillSpeed;
   boolean isMovingUp, isMovingDown, isMovingRight, isMovingLeft;
   
@@ -17,9 +17,9 @@ class Player {
     isMovingDown = false;
     isMovingRight = false;
     isMovingLeft = false;
-    //player = loadImage("playerVehicle3.png");
-    player = new Gif(this, "playerVehicle.gif");
-    player.play();
+    player = loadImage("playerVehicle3.png");
+    //player = new Gif(this, "playerVehicle.gif");
+    //player.play();
   }
   
   void move(float ms){
@@ -68,8 +68,13 @@ class Player {
   }
   
   void display(float ms){
-    //image(player, e.actualPosition(x, y)[0], e.actualPosition(x, y)[1], e.actualSize(size*1.5), e.actualSize(size));
-    image(player, e.actualPosition(x, y)[0], e.actualPosition(x, y)[1], e.actualSize(size*1.5), e.actualSize(size));
+    if (isMovingLeft == true){
+      scale(-1.0,1.0);
+      image(player, -e.actualPosition(x, y)[0], e.actualPosition(x, y)[1], e.actualSize(size*1.5), e.actualSize(size));
+    }
+    if (isMovingRight == true){
+      image(player, e.actualPosition(x, y)[0], e.actualPosition(x, y)[1], e.actualSize(size*1.5), e.actualSize(size));
+    }
   }
   
 }
