@@ -14,3 +14,11 @@ void draw(){
   e.tick((int)System.nanoTime() / 100000 - lastMillis);
   lastMillis = (int)System.nanoTime() / 100000;
 }
+
+void keyPressed(){
+  e.player.handleKeyPressed();
+}
+
+void keyReleased(){
+  e.player.handleKeyReleased();
+}
