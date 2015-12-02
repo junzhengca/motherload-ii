@@ -12,8 +12,11 @@ class MainMenu {
   MainMenu(Engine e){
     this.e = e;
     drillerImg = loadImage("main-menu-driller.png");
+    drillerImg.resize((int)this.e.s(500),0);
     backgroundImg = loadImage("main-menu-background.png");
+    backgroundImg.resize((int)this.e.s(1000),0);
     mainMenuTitleImg = loadImage("main-menu-title.png");
+    mainMenuTitleImg.resize((int)this.e.s(1000),0);
     mainMenuTitleImg.resize((int)e.actualSize(1000),0);
     startButton = new StartButton(this.e,250,700,500,160);
   }

@@ -19,6 +19,10 @@ class Engine {
   float actualSize(float value) {
     return value * this.scaleRatio;
   }
+  
+  float s(float value){
+    return this.actualSize(value);
+  }
 
   float[] actualPosition(float x, float y) {
     float[] result = new float[]{x * scaleRatio, y * scaleRatio};
@@ -30,6 +34,14 @@ class Engine {
     }
 
     return result;
+  }
+  
+  float x(float x){
+    return this.actualPosition(x,0)[0];
+  }
+  
+  float y(float y){
+    return this.actualPosition(0,y)[1];
   }
 
   void updateScreenSize() {
