@@ -46,22 +46,22 @@ class Player {
   }
   
   void handleKeyPressed(){
-    if (key == 'w' || key == UP){
+    if (key == 'w' || key == 'W' || keyCode == UP){
       isMovingUp = true;
     }
-    if (key == 's' || key == DOWN){
+    if (key == 's' || key == 'S' || keyCode == DOWN){
       isMovingDown = true;
       facingDown = true;
       facingLeft = false;
       facingRight = false;
     }
-    if (key == 'd' || key == RIGHT){
+    if (key == 'd' || key == 'D' || keyCode == RIGHT){
       isMovingRight = true;
       facingRight = true;
       facingLeft = false;
       facingDown = false;
     }
-    if (key == 'a' || key == LEFT){
+    if (key == 'a' || key == 'A' || keyCode == LEFT){
       isMovingLeft = true;
       facingLeft = true;
       facingDown = false;
@@ -70,16 +70,16 @@ class Player {
   }
   
   void handleKeyReleased(){
-    if (key == 'w' || key == UP){
+    if (key == 'w' || key == 'W' || keyCode == UP){
       isMovingUp = false;
     }
-    if (key == 's' || key == DOWN){
+    if (key == 's' || key == 'S' || keyCode == DOWN){
       isMovingDown = false;
     }
-    if (key == 'd' || key == RIGHT){
+    if (key == 'd' || key == 'D' || keyCode == RIGHT){
       isMovingRight = false;
     }
-    if (key == 'a' || key == LEFT){
+    if (key == 'a' || key == 'A' || keyCode == LEFT){
       isMovingLeft = false;
     }
   }
