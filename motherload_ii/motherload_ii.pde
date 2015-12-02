@@ -1,14 +1,24 @@
+import java.lang.*;
 Engine e;
 int lastMillis;
 
 void setup(){
   e = new Engine();
-  lastMillis = millis();
+  lastMillis = (int)System.nanoTime() / 100000;
   fullScreen();
+  frameRate(120);
 }
 
 void draw(){
   background(0);
-  e.tick(millis() - lastMillis);
-  lastMillis = millis();
+  e.tick((int)System.nanoTime() / 100000 - lastMillis);
+  lastMillis = (int)System.nanoTime() / 100000;
+}
+
+void keyPressed(){
+  e.player.handleKeyPressed();
+}
+
+void keyReleased(){
+  e.player.handleKeyReleased();
 }

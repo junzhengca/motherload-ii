@@ -1,11 +1,12 @@
 class Element {
 
-  int x, y, hardness, value, size;
+  int x, y, hardness, value, size,offset;
   color theColor;
   Engine e;
   boolean isDrawn;
-
-  Element(int _x, int _y, int _value, int _hardness, color _color, Engine theEngine) {
+  ElementManager em;
+  
+  Element(int _x, int _y, int _value, int _hardness, color _color, Engine theEngine, ElementManager _em) {
     x = _x;
     y = _y;
     size = 100;
@@ -14,15 +15,29 @@ class Element {
     theColor = _color;
     e = theEngine;
     isDrawn = true;
+    offset = 0;
+    em = _em;
   }
 
 
 
   void display() {
     if (isDrawn) {
-      rectMode(CENTER);
+      //rectMode(CENTER);
       fill(theColor);
-      rect(e.actualPosition(x, y)[0], e.actualPosition(x, y)[1], e.actualSize(size), e.actualSize(size));
+      noStroke();
+      rect(e.actualPosition(x, y)[0], e.actualPosition(x, y + em.offset)[1], e.actualSize(size), e.actualSize(size));
     }
   }
+  
+  
+  void checkOnScreen(){
+   if(offset+500 > this.x){
+     isDrawn = true;
+   }
+   else{
+     isDrawn = false;
+  }
+  }
+  
 }
