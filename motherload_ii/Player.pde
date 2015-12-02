@@ -1,8 +1,8 @@
 class Player {
  
+  //Gif player;
   Engine e;
   PImage player, playerDown;
-  //Gif player;
   float x, y, xSpeed, ySpeed, size, drillSpeed;
   boolean isMovingUp, isMovingDown, isMovingRight, isMovingLeft, facingLeft, facingRight, facingDown;
   
@@ -15,15 +15,15 @@ class Player {
     xSpeed = 0.05;
     ySpeed = 0.05;
     size = 75;
-    isMovingUp = false;
-    isMovingDown = false;
-    isMovingRight = false;
-    isMovingLeft = false;
     facingRight = true;
     facingLeft = false;
     facingDown = false;
-    player = loadImage("playerVehicle3.png");
-    playerDown = loadImage("playerVehicle3down.png");
+    isMovingUp = false;
+    isMovingLeft = false;
+    isMovingDown = false;
+    isMovingRight = false;
+    player = loadImage("playerVehicle.png");
+    playerDown = loadImage("playerVehicleDown.png");
     //player = new Gif(this, "playerVehicle.gif");
     //player.play();
   }
@@ -46,54 +46,55 @@ class Player {
   }
   
   void handleKeyPressed(){
-    if (key == 'w'){
+    if (key == 'w' || key == UP){
       isMovingUp = true;
     }
-    if (key == 's'){
+    if (key == 's' || key == DOWN){
       isMovingDown = true;
       facingDown = true;
-      facingRight = false;
       facingLeft = false;
+      facingRight = false;
     }
-    if (key == 'd'){
+    if (key == 'd' || key == RIGHT){
       isMovingRight = true;
       facingRight = true;
       facingLeft = false;
       facingDown = false;
     }
-    if (key == 'a'){
+    if (key == 'a' || key == LEFT){
       isMovingLeft = true;
       facingLeft = true;
-      facingRight = false;
       facingDown = false;
+      facingRight = false;
     }
   }
   
   void handleKeyReleased(){
-    if (key == 'w'){
+    if (key == 'w' || key == UP){
       isMovingUp = false;
     }
-    if (key == 's'){
+    if (key == 's' || key == DOWN){
       isMovingDown = false;
     }
-    if (key == 'd'){
+    if (key == 'd' || key == RIGHT){
       isMovingRight = false;
     }
-    if (key == 'a'){
+    if (key == 'a' || key == LEFT){
       isMovingLeft = false;
     }
   }
   
   void display(){
-    if (facingLeft){
-      scale(-1.0,1.0);
-      image(player, -e.actualPosition(x+(size*2), y)[0], e.actualPosition(x, y)[1], e.actualSize(size*1.5), e.actualSize(size));
-    }
     if (facingRight){
       image(player, e.actualPosition(x, y)[0], e.actualPosition(x, y)[1], e.actualSize(size*1.5), e.actualSize(size));
     }
+    if (facingLeft){
+      scale(-1.0,1.0);
+      image(player, -e.actualPosition(x+(size*1.5), y)[0], e.actualPosition(x, y)[1], e.actualSize(size*1.5), e.actualSize(size));
+    }
     if (facingDown){
-      image(playerDown, e.actualPosition(x, y)[0], e.actualPosition(x, y)[1], e.actualSize(size*1.5), e.actualSize(size));
+      scale(1.5,1.5);
+      image(playerDown, e.actualPosition(x-(x*1.75), y)[0], e.actualPosition(x, y-(y*0.30))[1], e.actualSize(size*1.5), e.actualSize(size));
     }
   }
   
