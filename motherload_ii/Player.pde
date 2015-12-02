@@ -86,15 +86,15 @@ class Player {
   
   void display(){
     if (facingRight){
-      image(player, e.actualPosition(x, y)[0], e.actualPosition(x, y)[1], e.actualSize(size*1.5), e.actualSize(size));
+      image(player, e.x(x), e.y(y), e.s(size*1.5), e.s(size));
     }
     if (facingLeft){
       scale(-1.0,1.0);
-      image(player, -e.actualPosition(x+(size*1.5), y)[0], e.actualPosition(x, y)[1], e.actualSize(size*1.5), e.actualSize(size));
+      image(player, -e.x(x+(size*1.5)), e.y(y), e.s(size*1.5), e.s(size));
     }
     if (facingDown){
       scale(1.5,1.5);
-      image(playerDown, e.actualPosition(x-(x*1.75), y)[0], e.actualPosition(x, y-(y*0.30))[1], e.actualSize(size*1.5), e.actualSize(size));
+      image(playerDown, e.x(x-(x*1.75)), e.y(y-(y*0.30)), e.s(size*1.5), e.s(size));
     }
   }
   
