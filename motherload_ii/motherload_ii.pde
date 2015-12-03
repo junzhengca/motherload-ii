@@ -11,7 +11,7 @@ void setup(){
 
 void draw(){
   background(0);
-  e.tick((int)System.nanoTime() / 100000 - lastMillis);
+  e.tick(constrain((int)System.nanoTime() / 100000 - lastMillis,0,200));
   lastMillis = (int)System.nanoTime() / 100000;
 }
 
