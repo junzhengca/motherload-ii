@@ -17,15 +17,15 @@ class ElementManager {
   void createMap() {
     for (int y = 0; y < 300; y ++) {
       for (int x = 0; x <10; x ++) {
-        randomNum = int(random(1, 7));
-        if (randomNum == 1 || randomNum == 2 || randomNum ==3) {
+        randomNum = int(random(1, 12));
+        if (randomNum <= 6) {
           elements[x][y] = new Dirt(e,x*100,y*100,this);
-        } else if (randomNum == 4) {
+        } else if (randomNum  <=8) {
           elements[x][y] = new Iron(e,x*100,y*100,this);
-        } else if (randomNum == 5) {
+        } else if (randomNum == 9) {
           elements[x][y] = new Gold(e,x*100,y*100,this);
         }
-        else if (randomNum == 6){
+        else if (randomNum <=11){
           elements[x][y] = new BlankTile(e,x*100,y*100,this);
           
         }
