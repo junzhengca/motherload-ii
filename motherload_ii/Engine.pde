@@ -3,6 +3,7 @@ class Engine {
   float w, h, scaleRatio;
   float actualW;
   int currentFrame = 0;
+  String debugMessage = "test";
   //testButton b;
   MainMenu mainMenu;
   ElementManager em;
@@ -14,6 +15,7 @@ class Engine {
     em.createMap();
     mainMenu = new MainMenu(this);
     player = new Player(this);
+    em.offset = this.y(200);
   }
 
   float actualSize(float value) {
@@ -53,6 +55,10 @@ class Engine {
       this.scaleRatio = width / this.actualW;
     }
   }
+  
+  void console(String m){
+    this.debugMessage = m + "\n" + this.debugMessage;
+  }
 
 
   void drawBackground() {
@@ -68,11 +74,16 @@ class Engine {
     if (mainMenu != null) mainMenu.tick(ms);
     else {
       em.display();
-      em.offset-=10;
+      em.offset = -y(player.y);
+      
     }
     
     currentFrame++;
     player.move(ms);
     player.display();
+    
+    fill(255);
+    textSize(16);
+    text(this.debugMessage,0,20);
   }
 }

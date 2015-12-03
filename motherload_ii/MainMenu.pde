@@ -22,11 +22,11 @@ class MainMenu {
   }
   
   void hide(float ms){
-    mainMenuTitleY -= 2 * ms;
-    mainMenuDrillerOpacity -= 2 * ms;
-    mainMenuOpacity -= 2 * ms;
-    mainMenuStartButtonY += 2 * ms;
-    if(animationTime > 500){
+    mainMenuTitleY -= 0.5 * ms;
+    mainMenuDrillerOpacity -= 0.5 * ms;
+    mainMenuOpacity -= 0.5 * ms;
+    mainMenuStartButtonY += 0.5 * ms;
+    if(animationTime > 1000){
       this.e.mainMenu = null;
     }
   }
@@ -51,19 +51,19 @@ class MainMenu {
     
     if(!hiding){
       if(mainMenuTitleY <= 200  && animationTime > 500){
-        mainMenuTitleY += 2 * ms;
+        mainMenuTitleY += 0.5 * ms;
       }
       
       if(mainMenuDrillerOpacity <= 255  && animationTime > 500){
-        mainMenuDrillerOpacity += 2 * ms;
+        mainMenuDrillerOpacity += 0.5 * ms;
       }
       
       if(mainMenuOpacity <= 255){
-        mainMenuOpacity += 2 * ms;
+        mainMenuOpacity += 0.5 * ms;
       }
       
       if(mainMenuStartButtonY >= 700 && animationTime > 1000){
-        mainMenuStartButtonY -= 2 * ms;
+        mainMenuStartButtonY -= 0.5 * ms;
       }
     } else {
       hide(ms); 
