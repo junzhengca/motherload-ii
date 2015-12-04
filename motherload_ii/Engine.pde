@@ -8,6 +8,8 @@ class Engine {
   MainMenu mainMenu;
   ElementManager em;
   Player player;
+  GasStation gs;
+  
   Engine() {
     this.actualW = 1000.f;
     updateScreenSize();
@@ -16,6 +18,7 @@ class Engine {
     mainMenu = new MainMenu(this);
     player = new Player(this);
     em.offset = this.y(200);
+    gs = new GasStation(this,player,em);
   }
 
   float actualSize(float value) {
@@ -75,11 +78,13 @@ class Engine {
     else {
       em.display();
       em.offset = -y(player.y) + 700;
+      gs.display();
     }
     
     currentFrame++;
     player.move(ms);
     player.display();
+    
     
     fill(255);
     textSize(16);
