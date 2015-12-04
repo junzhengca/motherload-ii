@@ -1,12 +1,12 @@
 class Player {
- 
+
   //Gif player;
   Engine e;
-  float x, y, xSpeed, ySpeed, size, drillSpeed,offset;
+  float x, y, xSpeed, ySpeed, size, drillSpeed, offset;
   PImage playerRight, playerLeft, playerDown;
   boolean isMovingUp, isMovingDown, isMovingRight, isMovingLeft, facingLeft, facingRight, facingDown;
-  
-  Player(Engine e){
+
+  Player(Engine e) {
     this.e = e;
     //x = e.x(100);
     //y = e.y(100);
@@ -29,81 +29,82 @@ class Player {
     //player = new Gif(this, "playerVehicle.gif");
     //player.play();
   }
-  
-  void move(float ms){
-    if (isMovingUp){
+
+  void move(float ms) {
+    if (isMovingUp) {
       y -= ySpeed * 3 * ms;
     }
     //if (isMovingDown){
     //  y += ySpeed * ms;
     //}
-    if (isMovingRight){
+    if (isMovingRight) {
       x += xSpeed * ms;
     }
-    if (isMovingLeft){
+    if (isMovingLeft) {
       x -= xSpeed * ms;
     }
-    
-    if(e.em.checkBlockType((int)this.x / 100,0).equals("BlankTile")){
+
+    if (e.em.checkBlockType((int)this.x / 100, 0).equals("BlankTile")) {
       e.console("empty");
     } else {
       e.console("not empty");
     }
-    if(this.y < e.em.offset - 80){
+    if (this.y <= e.em.offset - 80) {
       y += ySpeed * 2 * ms;
+    } else {
+      y = e.em.offset - 79;
     }
   }
-  
-  void handleKeyPressed(){
-    if (key == 'w' || key == 'W' || keyCode == UP){
+
+  void handleKeyPressed() {
+    if (key == 'w' || key == 'W' || keyCode == UP) {
       isMovingUp = true;
     }
-    if (key == 's' || key == 'S' || keyCode == DOWN){
+    if (key == 's' || key == 'S' || keyCode == DOWN) {
       isMovingDown = true;
       facingDown = true;
       facingLeft = false;
       facingRight = false;
     }
-    if (key == 'd' || key == 'D' || keyCode == RIGHT){
+    if (key == 'd' || key == 'D' || keyCode == RIGHT) {
       isMovingRight = true;
       facingRight = true;
       facingLeft = false;
       facingDown = false;
     }
-    if (key == 'a' || key == 'A' || keyCode == LEFT){
+    if (key == 'a' || key == 'A' || keyCode == LEFT) {
       isMovingLeft = true;
       facingLeft = true;
       facingDown = false;
       facingRight = false;
     }
   }
-  
-  void handleKeyReleased(){
-    if (key == 'w' || key == 'W' || keyCode == UP){
+
+  void handleKeyReleased() {
+    if (key == 'w' || key == 'W' || keyCode == UP) {
       isMovingUp = false;
     }
-    if (key == 's' || key == 'S' || keyCode == DOWN){
+    if (key == 's' || key == 'S' || keyCode == DOWN) {
       isMovingDown = false;
     }
-    if (key == 'd' || key == 'D' || keyCode == RIGHT){
+    if (key == 'd' || key == 'D' || keyCode == RIGHT) {
       isMovingRight = false;
     }
-    if (key == 'a' || key == 'A' || keyCode == LEFT){
+    if (key == 'a' || key == 'A' || keyCode == LEFT) {
       isMovingLeft = false;
     }
   }
-  
-  void display(){
-    if (facingRight){
+
+  void display() {
+    if (facingRight) {
       image(playerRight, e.x(x), e.y(y), e.s(size*1.5), e.s(size));
     }
-    if (facingLeft){
+    if (facingLeft) {
       image(playerLeft, e.x(x), e.y(y), e.s(size*1.5), e.s(size));
     }
-    if (facingDown){
-      image(playerDown, e.x(x-30), e.y(y), e.s(size*2.25), e.s(size*1.5));
+    if (facingDown) {
+      image(playerDown, e.x(x-30), e.y(y+7), e.s(size*2.25), e.s(size*1.5));
     }
-    rect(e.x(this.x + 50),e.y(this.y + 50),20,20);
+    rect(e.x(this.x + 50), e.y(this.y + 50), 20, 20);
   }
-  
 }
