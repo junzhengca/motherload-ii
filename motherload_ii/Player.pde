@@ -95,6 +95,17 @@ class Player {
   void display(){
     image(player, e.x(this.x),e.y(this.y));
     rect(e.x(this.x + 50),e.y(this.y + 50),20,20);
+    if (facingRight){
+      image(player, e.x(x), e.y(y), e.s(size*1.5), e.s(size));
+    }
+    if (facingLeft){
+      scale(-1.0,1.0);
+      image(player, -e.x(x+(size*1.5)), e.y(y), e.s(size*1.5), e.s(size));
+    }
+    if (facingDown){
+      scale(1.5,1.5);
+      image(playerDown, e.x(x-(x*1.75)), e.y(y-(y*0.30)), e.s(size*1.5), e.s(size));
+    }
   }
   
 }
