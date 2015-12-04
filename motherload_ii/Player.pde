@@ -49,7 +49,7 @@ class Player {
     } else {
       e.console("not empty");
     }
-    if(this.y < e.em.offset - 100){
+    if(this.y < e.em.offset - 80){
       y += ySpeed * 2 * ms;
     }
   }
@@ -94,7 +94,6 @@ class Player {
   }
   
   void display(){
-    rect(e.x(this.x + 50),e.y(this.y + 50),20,20);
     if (facingRight){
       image(playerRight, e.x(x), e.y(y), e.s(size*1.5), e.s(size));
     }
@@ -104,6 +103,7 @@ class Player {
     if (facingDown){
       image(playerDown, e.x(x-30), e.y(y), e.s(size*2.25), e.s(size*1.5));
     }
+    rect(e.x(this.x + 50),e.y(this.y + 50),20,20);
   }
   
 }
