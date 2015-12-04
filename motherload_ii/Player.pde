@@ -2,14 +2,14 @@ class Player {
  
   //Gif player;
   Engine e;
-  PImage player, playerDown;
   float x, y, xSpeed, ySpeed, size, drillSpeed,offset;
+  PImage playerRight, playerLeft, playerDown;
   boolean isMovingUp, isMovingDown, isMovingRight, isMovingLeft, facingLeft, facingRight, facingDown;
   
   Player(Engine e){
     this.e = e;
-    //x = e.actualPosition(100, 0)[0];
-    //y = e.actualPosition(0, 100)[1];
+    //x = e.x(100);
+    //y = e.y(100);
     x = 100;
     y = 0;
     xSpeed = 0.05;
@@ -23,9 +23,9 @@ class Player {
     isMovingLeft = false;
     isMovingDown = false;
     isMovingRight = false;
-    player = loadImage("playerVehicle.png");
+    playerRight = loadImage("playerVehicleRight.png");
+    playerLeft = loadImage("playerVehicleLeft.png");
     playerDown = loadImage("playerVehicleDown.png");
-    player.resize(0,(int)this.e.s(100));
     //player = new Gif(this, "playerVehicle.gif");
     //player.play();
   }
@@ -34,6 +34,9 @@ class Player {
     if (isMovingUp){
       y -= ySpeed * 3 * ms;
     }
+    //if (isMovingDown){
+    //  y += ySpeed * ms;
+    //}
     if (isMovingRight){
       x += xSpeed * ms;
     }
@@ -49,8 +52,6 @@ class Player {
     if(this.y < e.em.offset - 100){
       y += ySpeed * 2 * ms;
     }
-    //x = constrain(x, e.actualPosition(0, 0)[0], e.actualPosition(width, 0)[0]);
-    //y = constrain(x, e.actualPosition(0, 0)[0], e.actualPosition(0, height)[1]);
   }
   
   void handleKeyPressed(){
@@ -93,18 +94,15 @@ class Player {
   }
   
   void display(){
-    image(player, e.x(this.x),e.y(this.y));
     rect(e.x(this.x + 50),e.y(this.y + 50),20,20);
     if (facingRight){
-      image(player, e.x(x), e.y(y), e.s(size*1.5), e.s(size));
+      image(playerRight, e.x(x), e.y(y), e.s(size*1.5), e.s(size));
     }
     if (facingLeft){
-      scale(-1.0,1.0);
-      image(player, -e.x(x+(size*1.5)), e.y(y), e.s(size*1.5), e.s(size));
+      image(playerLeft, e.x(x), e.y(y), e.s(size*1.5), e.s(size));
     }
     if (facingDown){
-      scale(1.5,1.5);
-      image(playerDown, e.x(x-(x*1.75)), e.y(y-(y*0.30)), e.s(size*1.5), e.s(size));
+      image(playerDown, e.x(x-30), e.y(y), e.s(size*2.25), e.s(size*1.5));
     }
   }
   
