@@ -3,7 +3,7 @@ class Player {
   //Gif player;
   Engine e;
   PImage player, playerDown;
-  float x, y, xSpeed, ySpeed, size, drillSpeed;
+  float x, y, xSpeed, ySpeed, size, drillSpeed,offset;
   boolean isMovingUp, isMovingDown, isMovingRight, isMovingLeft, facingLeft, facingRight, facingDown;
   
   Player(Engine e){
@@ -11,9 +11,10 @@ class Player {
     //x = e.actualPosition(100, 0)[0];
     //y = e.actualPosition(0, 100)[1];
     x = 100;
-    y = 100;
+    y = 0;
     xSpeed = 0.05;
     ySpeed = 0.05;
+    offset = 0.0;
     size = 75;
     facingRight = true;
     facingLeft = false;
@@ -24,22 +25,29 @@ class Player {
     isMovingRight = false;
     player = loadImage("playerVehicle.png");
     playerDown = loadImage("playerVehicleDown.png");
+    player.resize(0,(int)this.e.s(100));
     //player = new Gif(this, "playerVehicle.gif");
     //player.play();
   }
   
   void move(float ms){
     if (isMovingUp){
-      y -= ySpeed * ms;
-    }
-    if (isMovingDown){
-      y += ySpeed * ms;
+      y -= ySpeed * 3 * ms;
     }
     if (isMovingRight){
       x += xSpeed * ms;
     }
     if (isMovingLeft){
       x -= xSpeed * ms;
+    }
+    
+    if(e.em.checkBlockType((int)this.x / 100,0).equals("BlankTile")){
+      e.console("empty");
+    } else {
+      e.console("not empty");
+    }
+    if(this.y < e.em.offset - 100){
+      y += ySpeed * 2 * ms;
     }
     //x = constrain(x, e.actualPosition(0, 0)[0], e.actualPosition(width, 0)[0]);
     //y = constrain(x, e.actualPosition(0, 0)[0], e.actualPosition(0, height)[1]);
@@ -85,7 +93,8 @@ class Player {
   }
   
   void display(){
-    image(player, e.actualPosition(x, y)[0], e.actualPosition(x, y)[1], e.actualSize(size*1.5), e.actualSize(size));
+    image(player, e.x(this.x),e.y(this.y));
+    rect(e.x(this.x + 50),e.y(this.y + 50),20,20);
   }
   
 }

@@ -74,8 +74,7 @@ class Engine {
     if (mainMenu != null) mainMenu.tick(ms);
     else {
       em.display();
-      em.offset = -y(player.y);
-      
+      em.offset = -y(player.y) + 700;
     }
     
     currentFrame++;
