@@ -73,17 +73,20 @@ class Engine {
     updateScreenSize();
     drawBackground();
 
+
     //b.tick(ms);
     if (mainMenu != null) mainMenu.tick(ms);
     else {
       em.display();
-      em.offset = -y(player.y) + 700;
+      if(player.y > 500){
+        em.offset = -y(player.y) + 700;
+      }
       gs.display();
+      player.move(ms);
+      player.display();
     }
     
     currentFrame++;
-    player.move(ms);
-    player.display();
     
     
     fill(255);

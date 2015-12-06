@@ -32,27 +32,32 @@ class Player {
 
   void move(float ms) {
     if (isMovingUp) {
-      y -= ySpeed * 3 * ms;
+      y -= ySpeed * 2 *  ms;
+      offset -= ySpeed * 2 *  ms;
     }
-    //if (isMovingDown){
-    //  y += ySpeed * ms;
-    //}
+    if (isMovingDown){
+      y += ySpeed * ms;
+      offset += ySpeed * ms;
+    }
     if (isMovingRight) {
       x += xSpeed * ms;
     }
     if (isMovingLeft) {
       x -= xSpeed * ms;
     }
-
-    if (e.em.checkBlockType((int)this.x / 100, 0).equals("BlankTile")) {
-      e.console("empty");
+    if(this.y >= 140){
+      if (e.em.checkBlockType((int)this.x / 100, (int)((this.y - 140) / 100)).equals("BlankTile")) {
+        //e.console("empty");
+        isMovingDown = true;
+      } else {
+        e.console(str(this.y));
+        if(isMovingDown){
+          e.em.destroyblock((int)this.x / 100,(int)((this.y - 140) / 100));
+          isMovingDown = false;
+        }
+      }
     } else {
-      e.console("not empty");
-    }
-    if (this.y <= e.em.offset - 80) {
-      y += ySpeed * 2 * ms;
-    } else {
-      y = e.em.offset - 79;
+      isMovingDown = true;
     }
   }
 
@@ -96,15 +101,19 @@ class Player {
   }
 
   void display() {
+    float actualY = y;
+    if(y > 500){
+      actualY = 500;
+    }
     if (facingRight) {
-      image(playerRight, e.x(x), e.y(y), e.s(size*1.5), e.s(size));
+      image(playerRight, e.x(x), e.y(actualY), e.s(size*1.5), e.s(size));
     }
     if (facingLeft) {
-      image(playerLeft, e.x(x), e.y(y), e.s(size*1.5), e.s(size));
+      image(playerLeft, e.x(x), e.y(actualY), e.s(size*1.5), e.s(size));
     }
     if (facingDown) {
-      image(playerDown, e.x(x-30), e.y(y+7), e.s(size*2.25), e.s(size*1.5));
+      image(playerDown, e.x(x-30), e.y(actualY+7), e.s(size*2.25), e.s(size*1.5));
     }
-    rect(e.x(this.x + 50), e.y(this.y + 50), 20, 20);
+    rect(e.x(this.x + 50), e.y(actualY + 50), 20, 20);
   }
 }
