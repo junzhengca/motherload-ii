@@ -47,6 +47,14 @@ class Player {
       x -= xSpeed * ms;
     }
     if(this.y >= 0){
+      if (isMovingRight && this.x <= 800 && y >= 50){
+        e.console("right");
+        e.em.destroyblock(constrain(((int)this.x/100)+1,0,9), constrain(((int)this.y / 100)-1,0,10000)); 
+      }
+      //if (isMovingLeft && this.x >= 100){
+      //  e.console("left");
+      //  e.em.destroyblock(((int)this.x/100) - 1, (int)this.y / 450); 
+      //}
       if (e.em.checkBlockType((int)(this.x + 50) / 100, (int)((this.y) / 100)).equals("BlankTile") && e.em.checkBlockType((int)((this.x) + 50) / 100, (int)((this.y) / 100)).equals("BlankTile")) {
         //e.console("empty");
         isMovingDown = true;
@@ -59,7 +67,13 @@ class Player {
     } else {
       isMovingDown = true;
     }
+    
+    x = constrain(x, 0, 900);
+    //y = constrain(y, e.y(0), e.y(height-(size)));
   }
+ 
+    
+    
   
   
   void handleKeyPressed() {
