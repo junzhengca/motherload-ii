@@ -22,8 +22,6 @@ class Element {
     this.elementImg.resize((int)e.actualSize(size), (int)e.actualSize(size));
   }
 
-
-
   void display() {
     if (isDrawn) {
       //rectMode(CENTER);
@@ -34,14 +32,13 @@ class Element {
     }
   }
   
-  
   void checkOnScreen(){
-   if(offset+500 > this.x){
-     isDrawn = true;
-   }
-   else{
-     isDrawn = false;
-  }
+    if(offset+500 > this.x){
+      isDrawn = true;
+    }
+    else{
+      isDrawn = false;
+    }
   }
   
 }

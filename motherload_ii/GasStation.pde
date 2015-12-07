@@ -1,5 +1,5 @@
-
 class GasStation{
+  
   int x,y;
   Engine e;
   Player p;
@@ -25,8 +25,6 @@ class GasStation{
     rect(e.actualPosition(x,y)[0], e.actualPosition(x,y - em.offset)[1], e.actualSize(200), e.actualSize(120));
   }
   
-  
-  
   void collision(){
     if(e.player.x+e.player.size > this.x && e.player.x < this.x+200 && e.player.y+e.player.size > this.y && e.player.y-10 < this.y+120){
       touchingPlayer = true;
@@ -47,10 +45,9 @@ class GasStation{
   }
   
   void fillGas(){
-   if(touchingPlayer){
-    e.player.fuel = 10; 
-   }
-    
+    if(touchingPlayer){
+      e.player.fuel = 10; 
+    }
   }
   
 }

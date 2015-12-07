@@ -4,6 +4,7 @@ class Button {
   float x,y,w,h;
   boolean mouseOver = false;
   boolean mouseDown = false;
+  
   Button(Engine e, float x,float y,float w,float h){
     this.x = x;
     this.y = y;
@@ -35,7 +36,9 @@ class Button {
 }
 
 class StartButton extends Button {
+  
   PImage defaultImg, hoverImg;
+  
   StartButton(Engine e, float x,float y,float w,float h){
     super(e,x,y,w,h); 
     defaultImg = loadImage("start-button-default.png");
@@ -49,6 +52,6 @@ class StartButton extends Button {
     } else {
       image(defaultImg,e.actualPosition(x,y)[0],e.actualPosition(x,y)[1],e.actualSize(w),e.actualSize(h));
     }
-    
   }
+  
 }
