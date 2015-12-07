@@ -5,6 +5,7 @@ class Player {
   float x, y, xSpeed, ySpeed, size, drillSpeed, offset;
   PImage playerRight, playerLeft, playerDown;
   boolean isMovingUp, isMovingDown, isMovingRight, isMovingLeft, facingLeft, facingRight, facingDown;
+  int fuel;
 
   Player(Engine e) {
     this.e = e;

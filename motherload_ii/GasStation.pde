@@ -1,4 +1,3 @@
-// Colllision is not working 100%, I need to check with Bishal some stuff about the player on monday
 
 class GasStation{
   int x,y;
@@ -21,14 +20,15 @@ class GasStation{
   void display(){
     collision();
     setFill();
+    fillGas();
     rectMode(CORNER);
-    rect(e.actualPosition(x,y)[0], e.actualPosition(x,y + em.offset)[1], e.actualSize(200), e.actualSize(120));
+    rect(e.actualPosition(x,y)[0], e.actualPosition(x,y - em.offset)[1], e.actualSize(200), e.actualSize(120));
   }
   
   
   
   void collision(){
-    if(e.player.x > this.x && e.player.x < this.x+200 && e.player.y+75 > this.y && e.player.y < this.y+120){
+    if(e.player.x+e.player.size > this.x && e.player.x < this.x+200 && e.player.y+e.player.size > this.y && e.player.y-10 < this.y+120){
       touchingPlayer = true;
     }
     else{
@@ -44,6 +44,13 @@ class GasStation{
       fillColor = color(0,255,0);
     }
     fill(fillColor);
+  }
+  
+  void fillGas(){
+   if(touchingPlayer){
+    e.player.fuel = 10; 
+   }
+    
   }
   
 }
