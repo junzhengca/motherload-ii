@@ -78,9 +78,7 @@ class Engine {
     if (mainMenu != null) mainMenu.tick(ms);
     else {
       em.display();
-      if(player.y > 500){
-        em.offset = -y(player.y) + 700;
-      }
+      em.offset = player.y - 400;
       gs.display();
       player.move(ms);
       player.display();

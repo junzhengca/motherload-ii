@@ -45,22 +45,22 @@ class Player {
     if (isMovingLeft) {
       x -= xSpeed * ms;
     }
-    if(this.y >= 140){
-      if (e.em.checkBlockType((int)this.x / 100, (int)((this.y - 140) / 100)).equals("BlankTile")) {
+    if(this.y >= 0){
+      if (e.em.checkBlockType((int)(this.x + 50) / 100, (int)((this.y) / 100)).equals("BlankTile") && e.em.checkBlockType((int)((this.x) + 50) / 100, (int)((this.y) / 100)).equals("BlankTile")) {
         //e.console("empty");
         isMovingDown = true;
       } else {
-        e.console(str(this.y));
-        if(isMovingDown){
-          e.em.destroyblock((int)this.x / 100,(int)((this.y - 140) / 100));
-          isMovingDown = false;
+        if(mousePressed){
+          e.em.destroyblock((int)(this.x + 50) / 100,(int)((this.y) / 100));
         }
+        isMovingDown = false;
       }
     } else {
       isMovingDown = true;
     }
   }
-
+  
+  
   void handleKeyPressed() {
     if (key == 'w' || key == 'W' || keyCode == UP) {
       isMovingUp = true;
@@ -101,19 +101,16 @@ class Player {
   }
 
   void display() {
-    float actualY = y;
-    if(y > 500){
-      actualY = 500;
-    }
+    //e.console(str(y));
     if (facingRight) {
-      image(playerRight, e.x(x), e.y(actualY), e.s(size*1.5), e.s(size));
+      image(playerRight, e.x(x), e.y(330), e.s(size*1.5), e.s(size));
     }
     if (facingLeft) {
-      image(playerLeft, e.x(x), e.y(actualY), e.s(size*1.5), e.s(size));
+      image(playerLeft, e.x(x), e.y(330), e.s(size*1.5), e.s(size));
     }
     if (facingDown) {
-      image(playerDown, e.x(x-30), e.y(actualY+7), e.s(size*2.25), e.s(size*1.5));
+      image(playerDown, e.x(x-30), e.y(330), e.s(size*2.25), e.s(size*1.5));
     }
-    rect(e.x(this.x + 50), e.y(actualY + 50), 20, 20);
+    //rect(e.x(this.x + 50), e.y(y + 50), 20, 20);
   }
 }

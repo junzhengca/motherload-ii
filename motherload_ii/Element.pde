@@ -5,8 +5,9 @@ class Element {
   Engine e;
   boolean isDrawn;
   ElementManager em;
+  PImage elementImg;
   
-  Element(int _x, int _y, int _value, int _hardness, color _color, Engine theEngine, ElementManager _em) {
+  Element(int _x, int _y, int _value, int _hardness, color _color, Engine theEngine, PImage img, ElementManager _em) {
     x = _x;
     y = _y;
     size = 100;
@@ -17,6 +18,8 @@ class Element {
     isDrawn = true;
     offset = 0;
     em = _em;
+    this.elementImg = img;
+    this.elementImg.resize((int)e.actualSize(size), (int)e.actualSize(size));
   }
 
 
@@ -26,7 +29,8 @@ class Element {
       //rectMode(CENTER);
       fill(theColor);
       noStroke();
-      rect(e.actualPosition(x, y)[0], e.actualPosition(x, y + em.offset)[1], e.actualSize(size), e.actualSize(size));
+      rect(e.actualPosition(x, y)[0], e.actualPosition(x, y - em.offset)[1], e.actualSize(size), e.actualSize(size));
+      image(elementImg,e.actualPosition(x, y)[0], e.actualPosition(x, y - em.offset)[1], e.actualSize(size), e.actualSize(size));
     }
   }
   

@@ -4,6 +4,7 @@ class ElementManager {
   int w, h, randomNum;
   float offset = 0;
   Engine e;
+  PImage dirtImage, goldImage, ironImage, blankImage;
 
 
 
@@ -11,6 +12,10 @@ class ElementManager {
     w = 1000;
     e = e_;
     elements = new Element[10][300];
+    dirtImage = loadImage("dirt.jpg");
+    goldImage = loadImage("gold.jpg");
+    ironImage = loadImage("gold.jpg");
+    blankImage = loadImage("gold.jpg");
   }
 
 
@@ -18,17 +23,17 @@ class ElementManager {
     for (int y = 0; y < 300; y ++) {
       for (int x = 0; x <10; x ++) {
         if (y == 0 || y ==1) {
-          elements[x][y] = new Dirt(e, x*100, y*100, this);
+          elements[x][y] = new Dirt(e, x*100, y*100,dirtImage, this);
         } else {
           randomNum = int(random(1, 12));
           if (randomNum <= 6) {
-            elements[x][y] = new Dirt(e, x*100, y*100, this);
+            elements[x][y] = new Dirt(e, x*100, y*100,dirtImage, this);
           } else if (randomNum  <=8) {
-            elements[x][y] = new Iron(e, x*100, y*100, this);
+            elements[x][y] = new Iron(e, x*100, y*100,ironImage, this);
           } else if (randomNum == 9) {
-            elements[x][y] = new Gold(e, x*100, y*100, this);
+            elements[x][y] = new Gold(e, x*100, y*100,goldImage, this);
           } else if (randomNum <=11) {
-            elements[x][y] = new BlankTile(e, x*100, y*100, this);
+            elements[x][y] = new BlankTile(e, x*100, y*100,blankImage, this);
           }
         }
       }
@@ -48,7 +53,7 @@ class ElementManager {
   }
 
   void destroyblock(int xIndex, int yIndex) {
-    elements[xIndex][yIndex] = new BlankTile(e, xIndex*100, yIndex*100, this);
+    elements[xIndex][yIndex] = new BlankTile(e, xIndex*100, yIndex*100,blankImage, this);
   }
 
 
