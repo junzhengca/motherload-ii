@@ -12,10 +12,10 @@ class ElementManager {
     w = 1000;
     e = e_;
     elements = new Element[10][300];
-    dirtImage = loadImage("dirt.jpg");
+    dirtImage = loadImage("dirt.png");
     goldImage = loadImage("gold.jpg");
     ironImage = loadImage("iron.jpg");
-    blankImage = loadImage("blank.jpg");
+    blankImage = loadImage("blank.png");
   }
 
 

@@ -9,6 +9,8 @@ class Engine {
   ElementManager em;
   Player player;
   GasStation gs;
+  int cashVal = 0;
+  PImage backgroundImg;
   
   Engine() {
     this.actualW = 1000.f;
@@ -18,6 +20,8 @@ class Engine {
     mainMenu = new MainMenu(this);
     player = new Player(this);
     em.offset = this.y(200);
+    backgroundImg = loadImage("background.jpg");
+    backgroundImg.resize((int)s(1000),(int)s(1000));
     gs = new GasStation(this,player,em);
   }
 
@@ -77,6 +81,7 @@ class Engine {
     //b.tick(ms);
     if (mainMenu != null) mainMenu.tick(ms);
     else {
+      image(backgroundImg,x(0),y(0));
       em.display();
       em.offset = player.y - 400;
       gs.display();

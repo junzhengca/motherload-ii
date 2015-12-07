@@ -29,7 +29,7 @@ class Element {
       //rectMode(CENTER);
       fill(theColor);
       noStroke();
-      rect(e.actualPosition(x, y)[0], e.actualPosition(x, y - em.offset)[1], e.actualSize(size), e.actualSize(size));
+      //rect(e.actualPosition(x, y)[0], e.actualPosition(x, y - em.offset)[1], e.actualSize(size), e.actualSize(size));
       image(elementImg,e.actualPosition(x, y)[0], e.actualPosition(x, y - em.offset)[1], e.actualSize(size), e.actualSize(size));
     }
   }
