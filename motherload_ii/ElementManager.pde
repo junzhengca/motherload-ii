@@ -14,8 +14,8 @@ class ElementManager {
     elements = new Element[10][300];
     dirtImage = loadImage("dirt.jpg");
     goldImage = loadImage("gold.jpg");
-    ironImage = loadImage("gold.jpg");
-    blankImage = loadImage("gold.jpg");
+    ironImage = loadImage("iron.jpg");
+    blankImage = loadImage("blank.jpg");
   }
 
 
