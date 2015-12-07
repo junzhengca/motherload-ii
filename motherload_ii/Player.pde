@@ -48,8 +48,12 @@ class Player {
     }
     if(this.y >= 0){
       if (isMovingRight && this.x <= 800 && y >= 50){
-        e.console("right");
+        //e.console("right");
         e.em.destroyblock(constrain(((int)this.x/100)+1,0,9), constrain(((int)this.y / 100)-1,0,10000)); 
+      }
+      if (isMovingLeft && this.x >= 20 && y >= 50){
+        //e.console("left");
+        e.em.destroyblock(constrain(((int)this.x/100),0,9), constrain(((int)this.y / 100)-1,0,10000)); 
       }
       //if (isMovingLeft && this.x >= 100){
       //  e.console("left");
@@ -81,7 +85,7 @@ class Player {
       isMovingUp = true;
     }
     if (key == 's' || key == 'S' || keyCode == DOWN) {
-      isMovingDown = true;
+      //isMovingDown = true;
       facingDown = true;
       facingLeft = false;
       facingRight = false;
