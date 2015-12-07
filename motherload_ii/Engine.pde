@@ -9,6 +9,7 @@ class Engine {
   ElementManager em;
   Player player;
   GasStation gs;
+  HUD hud;
   
   Engine() {
     this.actualW = 1000.f;
@@ -19,6 +20,7 @@ class Engine {
     player = new Player(this);
     em.offset = this.y(200);
     gs = new GasStation(this,player,em);
+    hud = new HUD(this);
   }
 
   float actualSize(float value) {
@@ -80,6 +82,7 @@ class Engine {
       em.display();
       em.offset = player.y - 400;
       gs.display();
+      hud.printToScreen();
       player.move(ms);
       player.display();
     }
