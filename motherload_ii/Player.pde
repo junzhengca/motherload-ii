@@ -5,7 +5,7 @@ class Player {
   float x, y, xSpeed, ySpeed, size, drillSpeed, offset;
   PImage playerRight, playerLeft, playerDown;
   boolean isMovingUp, isMovingDown, isMovingRight, isMovingLeft, facingLeft, facingRight, facingDown;
-  int fuel;
+  int fuel,fuelStartTime;
 
   Player(Engine e) {
     this.e = e;
@@ -17,6 +17,8 @@ class Player {
     ySpeed = 0.05;
     offset = 0.0;
     size = 75;
+    fuel = 10;
+    fuelStartTime = millis();
     facingRight = true;
     facingLeft = false;
     facingDown = false;
@@ -141,6 +143,7 @@ class Player {
   }
 
   void display() {
+    fuelLoss();
     //e.console(str(y));
     if (facingRight) {
       image(playerRight, e.x(x), e.y(330), e.s(size*1.5), e.s(size));
@@ -152,5 +155,12 @@ class Player {
       image(playerDown, e.x(x-30), e.y(330), e.s(size*2.25), e.s(size*1.5));
     }
     //rect(e.x(this.x + 50), e.y(y + 50), 20, 20);
+  }
+  
+  void fuelLoss(){
+   if(millis() > fuelStartTime + 3000 && fuel > 0){
+    fuel --;
+    fuelStartTime = millis();
+   }
   }
 }

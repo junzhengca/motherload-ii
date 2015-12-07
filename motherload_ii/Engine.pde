@@ -11,6 +11,7 @@ class Engine {
   GasStation gs;
   int cashVal = 0;
   PImage backgroundImg;
+  HUD hud;
   
   Engine() {
     this.actualW = 1000.f;
@@ -23,6 +24,7 @@ class Engine {
     backgroundImg = loadImage("background.jpg");
     backgroundImg.resize((int)s(1000),(int)s(1000));
     gs = new GasStation(this,player,em);
+    hud = new HUD(this);
   }
 
   float actualSize(float value) {
@@ -85,6 +87,7 @@ class Engine {
       em.display();
       em.offset = player.y - 400;
       gs.display();
+      hud.printToScreen();
       player.move(ms);
       player.display();
     }
