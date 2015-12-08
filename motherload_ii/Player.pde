@@ -158,7 +158,7 @@ class Player {
   }
   
   void fuelLoss(){
-   if(millis() > fuelStartTime + 3000 && fuel > 0){
+   if(millis() > fuelStartTime + 5000 && fuel > 0){
     fuel --;
     fuelStartTime = millis();
    }
