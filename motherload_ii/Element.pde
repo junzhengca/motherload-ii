@@ -30,7 +30,7 @@ class Element {
       fill(theColor);
       noStroke();
       //rect(e.actualPosition(x, y)[0], e.actualPosition(x, y - em.offset)[1], e.actualSize(size), e.actualSize(size));
-      image(elementImg,e.actualPosition(x, y)[0], e.actualPosition(x, y - em.offset)[1], e.actualSize(size), e.actualSize(size));
+      image(elementImg,e.actualPosition(x, y)[0], e.actualPosition(x, y - em.offset)[1]);
     }
   }
   

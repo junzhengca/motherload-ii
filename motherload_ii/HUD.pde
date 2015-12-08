@@ -1,12 +1,14 @@
 class HUD{
  Engine e;
- PImage tank;
+ PImage tank, fuelLevelImage;
  int fuelHeight;
  boolean showingFuelMessage = false;
  
  HUD(Engine theEngine){
    e = theEngine;
    tank = loadImage("Fuel-icon.png");
+   fuelLevelImage = loadImage("fuel-level-full.png");
+   fuelLevelImage.resize((int)e.s(1000),0);
  }
   
   
@@ -21,13 +23,9 @@ class HUD{
   }
   
   void showFuelLevelFull(){
-    textAlign(CENTER);
-    textSize(e.s(70));
-    fill(255);
     if(e.currentFrame % 10 <= 3){
-      text("FUEL IS FULL",e.x(500),e.y(700));
+      image(fuelLevelImage,e.x(0),e.y(500));
     }
-    textAlign(LEFT);
   }
   
 }
