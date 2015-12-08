@@ -1,13 +1,14 @@
 class Element {
 
-  int x, y, hardness, value, size,offset;
+  int x, y, value, size,offset;
+  float hardness;
   color theColor;
   Engine e;
   boolean isDrawn;
   ElementManager em;
   PImage elementImg;
   
-  Element(int _x, int _y, int _value, int _hardness, color _color, Engine theEngine, PImage img, ElementManager _em) {
+  Element(int _x, int _y, int _value, float _hardness, color _color, Engine theEngine, PImage img, ElementManager _em) {
     x = _x;
     y = _y;
     size = 100;
