@@ -40,7 +40,7 @@ class GasStation{
   }
   
   void setFill(){
-    if(touchingPlayer){
+    if(touchingPlayer && e.player.fuel == 10){
       fillColor = color(255,0,0);
       e.hud.showingFuelMessage = true;
     }
@@ -52,8 +52,9 @@ class GasStation{
   }
   
   void fillGas(){
-   if(touchingPlayer){
+   if(touchingPlayer && e.cashVal >= 600){
     e.player.fuel = 10; 
+    e.cashVal -= 600;
    }
     
   }
