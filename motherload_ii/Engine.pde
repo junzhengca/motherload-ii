@@ -3,7 +3,7 @@ class Engine {
   float w, h, scaleRatio;
   float actualW;
   int currentFrame = 0;
-  String debugMessage = "test";
+  String debugMessage = "";
   //testButton b;
   MainMenu mainMenu;
   ElementManager em;
@@ -11,10 +11,18 @@ class Engine {
   GasStation gs;
   int cashVal = 0;
   PImage backgroundImg;
+  int score;
   HUD hud;
+  JSONObject highScoreJson;
+  int highScore = 0;
+  String highScoreName = "";
   
   Engine() {
     this.actualW = 1000.f;
+    highScoreJson = loadJSONObject("data/highscore.json");
+    highScore = highScoreJson.getInt("value");
+    highScoreName = highScoreJson.getString("name");
+    score = 0;
     updateScreenSize();
     em = new ElementManager(this);
     em.createMap();
@@ -91,6 +99,14 @@ class Engine {
       player.move(ms);
       player.display();
       if(player.fuel == 0){
+        if(score > highScore){
+          highScoreJson.setInt("value",score);
+          saveJSONObject(highScoreJson, "data/highscore.json"); 
+        }
+        highScoreJson = loadJSONObject("data/highscore.json");
+        highScore = highScoreJson.getInt("value");
+        highScoreName = highScoreJson.getString("name");
+        score = 0;
         em = new ElementManager(this);
         em.createMap();
         mainMenu = new MainMenu(this);

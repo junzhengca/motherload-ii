@@ -41,6 +41,7 @@ class Player {
           if(mousePressed){
             e.cashVal += 100;
             e.console(str(e.cashVal));
+            e.score += 5;
           } else {
             isMovingRight = false;
           }
@@ -48,6 +49,7 @@ class Player {
           if(mousePressed){
             e.cashVal += 200;
             e.console(str(e.cashVal));
+            e.score += 10;
           } else {
             isMovingRight = false;
           }
@@ -63,6 +65,7 @@ class Player {
           if(mousePressed){
             e.cashVal += 100;
             e.console(str(e.cashVal));
+            e.score += 5;
           } else {
             isMovingLeft = false;
           }
@@ -70,6 +73,7 @@ class Player {
           if(mousePressed){
             e.cashVal += 200;
             e.console(str(e.cashVal));
+            e.score += 10;
           } else {
             isMovingLeft = false;
           }
@@ -88,9 +92,11 @@ class Player {
           if(e.em.checkBlockType((int)(this.x + 50) / 100,(int)((this.y) / 100)).equals("Iron")){
             e.cashVal += 100;
             e.console(str(e.cashVal));
+            e.score += 5;
           } else if (e.em.checkBlockType((int)(this.x + 50) / 100,(int)((this.y) / 100)).equals("Gold")){
             e.cashVal += 200;
             e.console(str(e.cashVal));
+            e.score += 10;
           }
           e.em.destroyblock((int)(this.x + 50) / 100,(int)((this.y) / 100));
         }

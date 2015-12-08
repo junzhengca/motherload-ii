@@ -8,6 +8,9 @@ class MainMenu {
   float mainMenuStartButtonY = 1200;
   boolean hiding = false;
   StartButton startButton;
+  JSONObject highScoreJson;
+  int highScore = 0;
+  String highScoreName = "";
   
   MainMenu(Engine e){
     this.e = e;
@@ -45,6 +48,10 @@ class MainMenu {
     tint(255,255,255,mainMenuDrillerOpacity);
     image(drillerImg,e.actualPosition(250,0)[0],e.actualPosition(0,300)[1]);
     tint(255,255,255,255);
+    textAlign(CENTER);
+    fill(255);
+    textSize(e.s(50));
+    text("HIGHSCORE - " + e.highScoreName + "  " + str(e.highScore),e.x(500),e.y(600));
     
     startButton.setY(mainMenuStartButtonY);
     startButton.tick(ms);

@@ -20,12 +20,20 @@ class HUD{
    rect(e.x(115),e.y(197-fuelHeight),e.actualSize(65),e.actualSize(fuelHeight));
    image(tank,e.actualPosition(100,100)[0],e.actualPosition(100,100)[1],e.actualSize(100),e.actualSize(100));
    if(showingFuelMessage) showFuelLevelFull();
+   showScore();
   }
   
   void showFuelLevelFull(){
     if(e.currentFrame % 10 <= 3){
       image(fuelLevelImage,e.x(0),e.y(500));
     }
+  }
+  
+  void showScore(){
+    textAlign(LEFT);
+    textSize(40);
+    fill(255);
+    text("SCORE - " + str(e.score), e.x(50), e.y(50));
   }
   
 }
