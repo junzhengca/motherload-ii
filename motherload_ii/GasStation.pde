@@ -6,6 +6,7 @@ class GasStation{
   boolean touchingPlayer;
   ElementManager em;
   color fillColor;
+  PImage nyanCat;
   
   GasStation(Engine theEngine, Player thePlayer, ElementManager em_){
     e = theEngine;
@@ -15,6 +16,8 @@ class GasStation{
     x = 300;
     y = -120;
     fillColor = color(0,255,0);
+    nyanCat = loadImage("nyan-cat.png");
+    nyanCat.resize((int)e.s(200),0);
   }
   
   void display(){
@@ -22,7 +25,7 @@ class GasStation{
     setFill();
     fillGas();
     rectMode(CORNER);
-    rect(e.actualPosition(x,y)[0], e.actualPosition(x,y - em.offset)[1], e.actualSize(200), e.actualSize(120));
+    image(nyanCat,e.actualPosition(x,y)[0], e.actualPosition(x,y - em.offset)[1]);
   }
   
   
@@ -39,9 +42,11 @@ class GasStation{
   void setFill(){
     if(touchingPlayer){
       fillColor = color(255,0,0);
+      e.hud.showingFuelMessage = true;
     }
     else{
       fillColor = color(0,255,0);
+      e.hud.showingFuelMessage = false;
     }
     fill(fillColor);
   }

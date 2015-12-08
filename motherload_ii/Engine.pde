@@ -90,6 +90,17 @@ class Engine {
       hud.printToScreen();
       player.move(ms);
       player.display();
+      if(player.fuel == 0){
+        em = new ElementManager(this);
+        em.createMap();
+        mainMenu = new MainMenu(this);
+        player = new Player(this);
+        em.offset = this.y(200);
+        backgroundImg = loadImage("background.jpg");
+        backgroundImg.resize((int)s(1000),(int)s(1000));
+        gs = new GasStation(this,player,em);
+        hud = new HUD(this);
+      }
     }
     
     currentFrame++;
