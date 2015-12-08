@@ -186,7 +186,6 @@ class Player {
   
   void fuelLoss(){
    if(millis() > fuelStartTime + 5000 && fuel > 0){
-     //e.console(str(fuel));
      fuel--;
      fuelStartTime = millis();
    }
