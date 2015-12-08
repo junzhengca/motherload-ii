@@ -10,6 +10,7 @@ class Engine {
   Player player;
   GasStation gs;
   int cashVal = 0;
+  int prevCashVal = 0;
   PImage backgroundImg;
   int score;
   HUD hud;

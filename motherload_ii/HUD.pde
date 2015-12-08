@@ -1,14 +1,16 @@
 class HUD{
  Engine e;
  PImage tank, fuelLevelImage;
- int fuelHeight;
- boolean showingFuelMessage = false;
+ int fuelHeight,startCashDisplay;
+ boolean showingFuelMessage = false, showingCashDisplay = false;
  
  HUD(Engine theEngine){
    e = theEngine;
    tank = loadImage("Fuel-icon.png");
    fuelLevelImage = loadImage("fuel-level-full.png");
    fuelLevelImage.resize((int)e.s(1000),0);
+   startCashDisplay = millis();
+
  }
   
   
@@ -21,6 +23,15 @@ class HUD{
    image(tank,e.actualPosition(100,100)[0],e.actualPosition(100,100)[1],e.actualSize(100),e.actualSize(100));
    if(showingFuelMessage) showFuelLevelFull();
    showScore();
+   if(millis() < startCashDisplay + 1000){
+     if(showingCashDisplay){
+       textSize(32);
+       fill(0,255,0);
+       text("$" + str(e.cashVal-e.prevCashVal),e.x(300),e.y(300));
+     }
+   } else {
+     showingCashDisplay = false;
+   }
   }
   
   void showFuelLevelFull(){
@@ -34,6 +45,11 @@ class HUD{
     textSize(40);
     fill(255);
     text("SCORE - " + str(e.score), e.x(50), e.y(50));
+  }
+  
+  void showCashVal(){
+   startCashDisplay = millis();
+   showingCashDisplay = true;
   }
   
 }

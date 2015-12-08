@@ -39,17 +39,21 @@ class Player {
         //e.console("right");
         if(e.em.checkBlockType(constrain(((int)this.x/100)+1,0,9), constrain(((int)(this.y + 50) / 100)-1,0,10000)).equals("Iron")){
           if(mousePressed){
+            e.prevCashVal = e.cashVal;
             e.cashVal += 100;
             e.console(str(e.cashVal));
             e.score += 5;
+            e.hud.showCashVal();
           } else {
             isMovingRight = false;
           }
         } else if (e.em.checkBlockType(constrain(((int)this.x/100)+1,0,9), constrain(((int)(this.y + 50) / 100)-1,0,10000)).equals("Gold")){
           if(mousePressed){
+            e.prevCashVal = e.cashVal;
             e.cashVal += 200;
             e.console(str(e.cashVal));
             e.score += 10;
+            e.hud.showCashVal();
           } else {
             isMovingRight = false;
           }
@@ -63,17 +67,21 @@ class Player {
       if (facingLeft && this.x >= 20 && y >= 50){
         if(e.em.checkBlockType(constrain(((int)this.x/100),0,9), constrain(((int)(this.y + 50) / 100)-1,0,10000)).equals("Iron")){
           if(mousePressed){
+            e.prevCashVal = e.cashVal;
             e.cashVal += 100;
             e.console(str(e.cashVal));
             e.score += 5;
+            e.hud.showCashVal();
           } else {
             isMovingLeft = false;
           }
         } else if (e.em.checkBlockType(constrain(((int)this.x/100),0,9), constrain(((int)(this.y + 50) / 100)-1,0,10000)).equals("Gold")){
           if(mousePressed){
+            e.prevCashVal = e.cashVal;
             e.cashVal += 200;
             e.console(str(e.cashVal));
             e.score += 10;
+            e.hud.showCashVal();
           } else {
             isMovingLeft = false;
           }
@@ -90,13 +98,17 @@ class Player {
       } else {
         if(mousePressed && facingDown){
           if(e.em.checkBlockType((int)(this.x + 50) / 100,(int)((this.y) / 100)).equals("Iron")){
+            e.prevCashVal = e.cashVal;
             e.cashVal += 100;
             e.console(str(e.cashVal));
             e.score += 5;
+            e.hud.showCashVal();
           } else if (e.em.checkBlockType((int)(this.x + 50) / 100,(int)((this.y) / 100)).equals("Gold")){
+            e.prevCashVal = e.cashVal;
             e.cashVal += 200;
             e.console(str(e.cashVal));
             e.score += 10;
+            e.hud.showCashVal();
           }
           e.em.destroyblock((int)(this.x + 50) / 100,(int)((this.y) / 100));
         }
