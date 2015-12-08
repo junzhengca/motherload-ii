@@ -25,7 +25,7 @@ class HUD{
    showScore();
    if(millis() < startCashDisplay + 1000){
      if(showingCashDisplay){
-       textSize(32);
+       textSize(e.s(32));
        fill(0,255,0);
        text("$" + str(e.cashVal-e.prevCashVal),e.x(300),e.y(300));
      }
@@ -42,7 +42,7 @@ class HUD{
   
   void showScore(){
     textAlign(LEFT);
-    textSize(40);
+    textSize(e.s(40));
     fill(255);
     text("SCORE - " + str(e.score), e.x(50), e.y(50));
   }
