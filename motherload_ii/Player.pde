@@ -5,6 +5,7 @@ class Player {
   PImage playerRight, playerLeft, playerDown;
   boolean isMovingUp, isMovingDown, isMovingRight, isMovingLeft, facingLeft, facingRight, facingDown;
   int fuel,fuelStartTime;
+  float currentPressTime = 0;
 
   Player(Engine e) {
     this.e = e;
@@ -39,15 +40,21 @@ class Player {
   void move(float ms) {
     if(this.y >= 0){ //if player is under surface
       if (facingRight && this.x <= 900 && y >= 50){ //facing right
-        if(mousePressed) mineElement(this.x + 100,this.y - 50); //if i do ceil() it will be 1 y index off for left and right
+        if(mousePressed){
+          mineElement(this.x + 100,this.y - 50,ms); //if i do ceil() it will be 1 y index off for left and right
+        }
       }
       
       if (facingLeft && this.x >= 20 && y >= 50){ //facing left
-        if(mousePressed) mineElement(this.x,this.y - 50);
+        if(mousePressed){
+          mineElement(this.x,this.y - 50,ms);
+        }
       }
       
       if (facingDown){ //facing down
-        if(mousePressed) mineElement(this.x + 50,this.y + 35);
+        if(mousePressed){
+          mineElement(this.x + 50,this.y + 35,ms);
+        }
       }
     }
     
@@ -78,33 +85,40 @@ class Player {
     x = constrain(x, 0, 900);
   }
   
-  void mineElement(int x, int y){
+  void mineElement(int x, int y, float ms){
     switch(getBlockType(x,y)){
       case "Dirt":
+        currentPressTime += ms;
         e.prevCashVal = e.cashVal;
         e.score += 1;
         e.hud.showCashVal();
       break;
       case "Iron":
+        currentPressTime += ms;
         e.prevCashVal = e.cashVal;
         e.cashVal += 100;
         e.score += 5;
         e.hud.showCashVal();
       break;
       case "Gold":
+        currentPressTime += ms;
         e.prevCashVal = e.cashVal;
         e.cashVal += 200;
         e.score += 10;
         e.hud.showCashVal();
       break;
       default:
+      currentPressTime = 0;
       break;
     }
-    e.em.destroyblock(constrain(((int)x/100),0,9), constrain(((int)y / 100),0,10000)); 
+    if(currentPressTime > 3000){
+      e.em.destroyblock(constrain(((int)x/100),0,9), constrain(((int)y / 100),0,10000)); 
+      currentPressTime = 0;
+    }
   }
   
-  void mineElement(float x, float y){
-    mineElement((int)x,(int)y);
+  void mineElement(float x, float y, float ms){
+    mineElement((int)x,(int)y,ms);
   }
   
   void handleKeyPressed() {
@@ -157,7 +171,7 @@ class Player {
     if (facingDown) {
       image(playerDown, e.x(x-30), e.y(330), e.s(size*2.25), e.s(size*1.5));
     }
-    
+    rect(0,0,currentPressTime / 30,e.s(20));
   }
   
   void fuelLoss(){
