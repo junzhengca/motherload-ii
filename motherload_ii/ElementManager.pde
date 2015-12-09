@@ -4,15 +4,18 @@ class ElementManager {
   int w, h, randomNum;
   float offset = 0;
   Engine e;
-  PImage dirtImage, goldImage, ironImage, blankImage;
+  PImage dirtImage, dirtHalfImage, goldImage, goldHalfImage, ironImage, ironHalfImage, blankImage;
 
   ElementManager(Engine e_) {
     w = 1000;
     e = e_;
     elements = new Element[10][300];
     dirtImage = loadImage("dirt.jpg");
+    dirtHalfImage = loadImage("dirtHalf.jpg");
     goldImage = loadImage("gold.jpg");
+    goldHalfImage = loadImage("goldHalf.png");
     ironImage = loadImage("iron.jpg");
+    ironHalfImage = loadImage("ironHalf.png");
     blankImage = loadImage("blank.png");
   }
 

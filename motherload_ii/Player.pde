@@ -91,12 +91,24 @@ class Player {
     switch(getBlockType(x,y)){
       case "Dirt":
         currentPressTime += ms;
+        if (currentPressTime > currentHardness * 500 && currentPressTime < currentHardness * 1000){
+          e.em.elements[constrain(((int)x/100),0,9)][constrain(((int)y / 100),0,10000)].elementImg = e.em.dirtHalfImage;
+          e.em.elements[constrain(((int)x/100),0,9)][constrain(((int)y / 100),0,10000)].elementImg.resize((int)e.s(e.em.elements[constrain(((int)x/100),0,9)][constrain(((int)y / 100),0,10000)].size), (int)e.s(e.em.elements[constrain(((int)x/100),0,9)][constrain(((int)y / 100),0,10000)].size));
+        }
       break;
       case "Iron":
         currentPressTime += ms;
+        if (currentPressTime > currentHardness * 500 && currentPressTime < currentHardness * 1000){
+          e.em.elements[constrain(((int)x/100),0,9)][constrain(((int)y / 100),0,10000)].elementImg = e.em.ironHalfImage;
+          e.em.elements[constrain(((int)x/100),0,9)][constrain(((int)y / 100),0,10000)].elementImg.resize((int)e.s(e.em.elements[constrain(((int)x/100),0,9)][constrain(((int)y / 100),0,10000)].size), (int)e.s(e.em.elements[constrain(((int)x/100),0,9)][constrain(((int)y / 100),0,10000)].size));
+        }
       break;
       case "Gold":
         currentPressTime += ms;
+        if (currentPressTime > currentHardness * 500 && currentPressTime < currentHardness * 1000){
+          e.em.elements[constrain(((int)x/100),0,9)][constrain(((int)y / 100),0,10000)].elementImg = e.em.goldHalfImage;
+          e.em.elements[constrain(((int)x/100),0,9)][constrain(((int)y / 100),0,10000)].elementImg.resize((int)e.s(e.em.elements[constrain(((int)x/100),0,9)][constrain(((int)y / 100),0,10000)].size), (int)e.s(e.em.elements[constrain(((int)x/100),0,9)][constrain(((int)y / 100),0,10000)].size));
+        }
       break;
       default:
         currentPressTime = 0;
