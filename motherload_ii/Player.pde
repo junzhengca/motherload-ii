@@ -58,7 +58,7 @@ class Player {
       }
     }
     
-    if(getBlockType(x + 20,y).equals("BlankTile") && getBlockType(x + 70,y).equals("BlankTile")){
+    if(getBlockType(x + 20,y).equals("BlankTile") && getBlockType(x + 70,y).equals("BlankTile") || y <= 0){
       isMovingDown = true;
     } else {
       isMovingDown = false;
@@ -76,10 +76,10 @@ class Player {
       y += ySpeed * ms;
       offset += ySpeed * ms;
     }
-    if (isMovingRight && getBlockType(x + 90,y - 50).equals("BlankTile")) {
+    if (isMovingRight && (getBlockType(x + 90,y - 50).equals("BlankTile") || y <= 20)) {
       x += xSpeed * ms;
     }
-    if (isMovingLeft && getBlockType(x + 10,y - 50).equals("BlankTile")) {
+    if (isMovingLeft && (getBlockType(x + 10,y - 50).equals("BlankTile") || y <= 20)) {
       x -= xSpeed * ms;
     }
     x = constrain(x, 0, 900);
