@@ -5,7 +5,7 @@ int lastMillis;
 void setup(){
   e = new Engine();
   lastMillis = (int)System.nanoTime() / 100000;
-  size(600,600);
+  size(500,500);
   frameRate(120);
 }
 

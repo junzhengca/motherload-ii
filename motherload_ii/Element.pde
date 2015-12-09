@@ -22,7 +22,7 @@ class Element {
     this.elementImg = img;
     this.elementImg.resize((int)e.actualSize(size), (int)e.actualSize(size));
   }
-  
+
   void display() {
     if (isDrawn) {
       //rectMode(CENTER);

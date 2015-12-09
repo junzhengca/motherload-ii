@@ -47,6 +47,15 @@ class ElementManager {
         elements[x][y].display();
       }
     }
+    
+    //show collision detection points
+    fill(255,0,0);
+    rect(e.x((int)e.player.x + 100),e.y((int)e.player.y - 35 - offset),5,5); //right
+    rect(e.x((int)e.player.x),e.y((int)e.player.y - 35 - offset),5,5); //left
+    rect(e.x((int)e.player.x + 50),e.y((int)e.player.y + 35 - offset),5,5); //down
+    fill(0,255,0);
+    rect(e.x((int)e.player.x + 20),e.y((int)e.player.y - offset),5,5); //left bottom collision
+    rect(e.x((int)e.player.x + 70),e.y((int)e.player.y - offset),5,5); //right bottom collision
   }
 
   void destroyblock(int xIndex, int yIndex) {
