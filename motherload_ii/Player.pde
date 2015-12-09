@@ -6,6 +6,7 @@ class Player {
   boolean isMovingUp, isMovingDown, isMovingRight, isMovingLeft, facingLeft, facingRight, facingDown;
   int fuel,fuelStartTime;
   float currentPressTime = 0;
+  float currentHardness = 0;
 
   Player(Engine e) {
     this.e = e;
@@ -86,6 +87,7 @@ class Player {
   }
   
   void mineElement(int x, int y, float ms){
+    currentHardness = e.em.elements[constrain(((int)x/100),0,9)][constrain(((int)y / 100),0,10000)].hardness;
     switch(getBlockType(x,y)){
       case "Dirt":
         currentPressTime += ms;
@@ -100,7 +102,7 @@ class Player {
         currentPressTime = 0;
       break;
     }
-    if(currentPressTime > 3000){
+    if(currentPressTime > currentHardness * 1000){
       currentPressTime = 0;
       switch(getBlockType(x,y)){
         case "Dirt":
@@ -182,7 +184,7 @@ class Player {
     if (facingDown) {
       image(playerDown, e.x(x-30), e.y(330), e.s(size*2.25), e.s(size*1.5));
     }
-    rect(0,0,currentPressTime / 30,e.s(20));
+    rect(0,0,(currentPressTime / (currentHardness * 1000)) * 100,e.s(20));
   }
   
   void fuelLoss(){
