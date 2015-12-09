@@ -1,4 +1,5 @@
 class HUD{
+  
  Engine e;
  PImage tank, fuelLevelImage;
  int fuelHeight,startCashDisplay;
@@ -10,7 +11,6 @@ class HUD{
    fuelLevelImage = loadImage("fuel-level-full.png");
    fuelLevelImage.resize((int)e.s(1000),0);
    startCashDisplay = millis();
-
  }
   
  void printToScreen(){

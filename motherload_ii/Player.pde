@@ -57,9 +57,6 @@ class Player {
       isMovingDown = false;
     }
     
-    
-    
-    
     if (isMovingUp) {
       if (e.em.checkBlockType((int)(this.x + 50) / 100, constrain((int)((this.y) / 100) - 1,0,1000000)).equals("BlankTile") && e.em.checkBlockType((int)((this.x) + 50) / 100, constrain((int)((this.y) / 100) - 1,0,1000000)).equals("BlankTile")) {
         //e.console("empty");
@@ -164,10 +161,10 @@ class Player {
   }
   
   void fuelLoss(){
-   if(millis() > fuelStartTime + 5000 && fuel > 0){
-     fuel--;
-     fuelStartTime = millis();
-   }
+    if(millis() > fuelStartTime + 5000 && fuel > 0){
+      fuel--;
+      fuelStartTime = millis();
+    }
   }
   
 }

@@ -50,10 +50,10 @@ class GasStation{
   }
   
   void fillGas(){
-   if(touchingPlayer && e.cashVal >= 600){
-    e.player.fuel = 10; 
-    e.cashVal -= 600;
-   }
+    if(touchingPlayer && e.cashVal >= 600){
+      e.player.fuel = 10; 
+      e.cashVal -= 600;
+    }
   }
   
 }
