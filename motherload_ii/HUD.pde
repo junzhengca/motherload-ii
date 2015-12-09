@@ -21,6 +21,7 @@ class HUD{
    image(tank,e.actualPosition(100,100)[0],e.actualPosition(100,100)[1],e.actualSize(100),e.actualSize(100));
    if(showingFuelMessage) showFuelLevelFull();
    showScore();
+   showMoneyInBank();
    if(millis() < startCashDisplay + 1000){
      if(showingCashDisplay){
        textSize(e.s(32));
@@ -42,7 +43,7 @@ class HUD{
     textAlign(LEFT);
     textSize(e.s(40));
     fill(255);
-    text("SCORE - " + str(e.score), e.x(50), e.y(50));
+    text("SCORE - " + str(e.score), e.x(50), e.y(85));
   }
   
   void showCashVal(){
@@ -53,6 +54,12 @@ class HUD{
     fuelHeight = e.player.fuel*10;
     rect(e.x(115),e.y(197-fuelHeight),e.actualSize(65),e.actualSize(fuelHeight));
     image(tank,e.actualPosition(100,100)[0],e.actualPosition(100,100)[1],e.actualSize(100),e.actualSize(100));
+  }
+  
+  void showMoneyInBank(){
+    textSize(e.s(40));
+    fill(78,148,85);
+    text("BANK - $" + str(e.cashVal), e.x(50),e.y(40));
   }
   
 }

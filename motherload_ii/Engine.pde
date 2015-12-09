@@ -24,6 +24,8 @@ class Engine {
     highScore = highScoreJson.getInt("value");
     highScoreName = highScoreJson.getString("name");
     score = 0;
+    cashVal = 0;
+    prevCashVal = 0;
     updateScreenSize();
     em = new ElementManager(this);
     em.createMap();
@@ -107,6 +109,7 @@ class Engine {
         highScore = highScoreJson.getInt("value");
         highScoreName = highScoreJson.getString("name");
         score = 0;
+        
         em = new ElementManager(this);
         em.createMap();
         mainMenu = new MainMenu(this);
@@ -116,6 +119,8 @@ class Engine {
         backgroundImg.resize((int)s(1000),(int)s(1000));
         gs = new GasStation(this,player,em);
         hud = new HUD(this);
+        cashVal = 0;
+        prevCashVal = 0;
       }
     }
     
