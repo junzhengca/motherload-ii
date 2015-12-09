@@ -89,31 +89,42 @@ class Player {
     switch(getBlockType(x,y)){
       case "Dirt":
         currentPressTime += ms;
-        e.prevCashVal = e.cashVal;
-        e.score += 1;
-        e.hud.showCashVal();
       break;
       case "Iron":
         currentPressTime += ms;
-        e.prevCashVal = e.cashVal;
-        e.cashVal += 100;
-        e.score += 5;
-        e.hud.showCashVal();
       break;
       case "Gold":
         currentPressTime += ms;
-        e.prevCashVal = e.cashVal;
-        e.cashVal += 200;
-        e.score += 10;
-        e.hud.showCashVal();
       break;
       default:
-      currentPressTime = 0;
+        currentPressTime = 0;
       break;
     }
     if(currentPressTime > 3000){
-      e.em.destroyblock(constrain(((int)x/100),0,9), constrain(((int)y / 100),0,10000)); 
       currentPressTime = 0;
+      switch(getBlockType(x,y)){
+        case "Dirt":
+          e.prevCashVal = e.cashVal;
+          e.score += 1;
+          e.hud.showCashVal();
+        break;
+        case "Iron":
+          e.prevCashVal = e.cashVal;
+          e.cashVal += 100;
+          e.score += 5;
+          e.hud.showCashVal();
+        break;
+        case "Gold":
+          e.prevCashVal = e.cashVal;
+          e.cashVal += 200;
+          e.score += 10;
+          e.hud.showCashVal();
+        break;
+        default:
+          currentPressTime = 0;
+        break;
+      }
+      e.em.destroyblock(constrain(((int)x/100),0,9), constrain(((int)y / 100),0,10000)); 
     }
   }
   
