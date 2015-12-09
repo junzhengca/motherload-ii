@@ -12,6 +12,7 @@ class MainMenu {
   JSONObject highScoreJson;
   int highScore = 0;
   String highScoreName = "";
+  SoundPlayer sp;
   
   MainMenu(Engine e){
     this.e = e;
@@ -23,6 +24,12 @@ class MainMenu {
     mainMenuTitleImg.resize((int)this.e.s(1000),0);
     mainMenuTitleImg.resize((int)e.actualSize(1000),0);
     startButton = new StartButton(this.e,250,700,500,160);
+    sp =  new SoundPlayer(dataPath("") + "/background.wav");
+    try{
+      sp.playSound();
+    } catch (Exception ex){
+      print(ex); 
+    }
   }
   
   void hide(float ms){
