@@ -6,8 +6,6 @@ class ElementManager {
   Engine e;
   PImage dirtImage, goldImage, ironImage, blankImage;
 
-
-
   ElementManager(Engine e_) {
     w = 1000;
     e = e_;
@@ -17,7 +15,6 @@ class ElementManager {
     ironImage = loadImage("iron.jpg");
     blankImage = loadImage("blank.png");
   }
-
 
   void createMap() {
     for (int y = 0; y < 300; y ++) {
@@ -56,9 +53,9 @@ class ElementManager {
     elements[xIndex][yIndex] = new BlankTile(e, xIndex*100, yIndex*100,blankImage, this);
   }
 
-
   String checkBlockType(int xIndex, int yIndex) {
     String className = split(elements[xIndex][yIndex].getClass().getName(), "$")[1]; //Get object's class name
     return className;
   }
+  
 }

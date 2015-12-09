@@ -1,5 +1,4 @@
 class GasStation{
-  
   int x,y;
   Engine e;
   Player p;
@@ -28,6 +27,8 @@ class GasStation{
     image(nyanCat,e.actualPosition(x,y)[0], e.actualPosition(x,y - em.offset)[1]);
   }
   
+  
+  
   void collision(){
     if(e.player.x+e.player.size > this.x && e.player.x < this.x+200 && e.player.y+e.player.size > this.y && e.player.y-10 < this.y+120){
       touchingPlayer = true;
@@ -54,6 +55,7 @@ class GasStation{
     e.player.fuel = 10; 
     e.cashVal -= 600;
    }
+    
   }
   
 }

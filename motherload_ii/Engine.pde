@@ -78,7 +78,6 @@ class Engine {
     this.debugMessage = m + "\n" + this.debugMessage;
   }
 
-
   void drawBackground() {
     fill(0);
     rect(actualPosition(0, 0)[0], actualPosition(0, 0)[1], actualSize(actualW), actualSize(actualW));
@@ -87,7 +86,6 @@ class Engine {
   void tick(float ms) {
     updateScreenSize();
     drawBackground();
-
 
     //b.tick(ms);
     if (mainMenu != null) mainMenu.tick(ms);
@@ -122,9 +120,9 @@ class Engine {
     
     currentFrame++;
     
-    
     fill(255);
     textSize(16);
     text(this.debugMessage,0,20);
   }
+  
 }

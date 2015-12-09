@@ -1,4 +1,5 @@
 class MainMenu {
+  
   Engine e;
   PImage drillerImg, backgroundImg, mainMenuTitleImg;
   float animationTime = 0;
@@ -80,4 +81,5 @@ class MainMenu {
        startButtonClicked();
     }
   }
+  
 }
