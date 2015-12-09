@@ -1,7 +1,7 @@
 class Player {
 
   Engine e;
-  float x, y, xSpeed, ySpeed, size, drillSpeed, offset,fuel;
+  float x, y, xSpeed, ySpeed, size, offset,fuel;
   PImage playerRight, playerLeft, playerDown;
   boolean isMovingUp, isMovingDown, isMovingRight, isMovingLeft, facingLeft, facingRight, facingDown;
   int fuelStartTime;
