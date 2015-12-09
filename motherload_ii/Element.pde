@@ -1,13 +1,14 @@
 class Element {
 
-  int x, y, hardness, value, size,offset;
+  int x, y, value, size,offset;
+  float hardness;
   color theColor;
   Engine e;
   boolean isDrawn;
   ElementManager em;
   PImage elementImg;
   
-  Element(int _x, int _y, int _value, int _hardness, color _color, Engine theEngine, PImage img, ElementManager _em) {
+  Element(int _x, int _y, int _value, float _hardness, color _color, Engine theEngine, PImage img, ElementManager _em) {
     x = _x;
     y = _y;
     size = 100;
@@ -22,8 +23,6 @@ class Element {
     this.elementImg.resize((int)e.actualSize(size), (int)e.actualSize(size));
   }
 
-
-
   void display() {
     if (isDrawn) {
       //rectMode(CENTER);
@@ -34,14 +33,13 @@ class Element {
     }
   }
   
-  
   void checkOnScreen(){
-   if(offset+500 > this.x){
-     isDrawn = true;
-   }
-   else{
-     isDrawn = false;
-  }
+    if(offset+500 > this.x){
+      isDrawn = true;
+    }
+    else{
+      isDrawn = false;
+    }
   }
   
 }

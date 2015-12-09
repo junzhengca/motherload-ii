@@ -88,7 +88,6 @@ class Engine {
     updateScreenSize();
     drawBackground();
 
-
     //b.tick(ms);
     if (mainMenu != null) mainMenu.tick(ms);
     else {
@@ -122,9 +121,9 @@ class Engine {
     
     currentFrame++;
     
-    
     fill(255);
     textSize(16);
     text(this.debugMessage,0,20);
   }
+  
 }

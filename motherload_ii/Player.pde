@@ -1,6 +1,5 @@
 class Player {
 
-  //Gif player;
   Engine e;
   float x, y, xSpeed, ySpeed, size, drillSpeed, offset;
   PImage playerRight, playerLeft, playerDown;
@@ -9,8 +8,6 @@ class Player {
 
   Player(Engine e) {
     this.e = e;
-    //x = e.x(100);
-    //y = e.y(100);
     x = 100;
     y = 0;
     xSpeed = 0.05;
@@ -29,8 +26,6 @@ class Player {
     playerRight = loadImage("playerVehicleRight.png");
     playerLeft = loadImage("playerVehicleLeft.png");
     playerDown = loadImage("playerVehicleDown.png");
-    //player = new Gif(this, "playerVehicle.gif");
-    //player.play();
   }
 
   void move(float ms) {
@@ -91,8 +86,49 @@ class Player {
           }
         }
         if(mousePressed) e.em.destroyblock(constrain(((int)this.x/100),0,9), constrain(((int)(this.y + 50) / 100)-1,0,10000)); 
+        //if(e.em.checkBlockType(constrain(((int)this.x/100)+1,0,9), constrain(((int)(this.y+50)/100)-1,0,400)).equals("Iron")){
+        //  e.cashVal += 100;
+        //  e.console(str(e.cashVal));
+        //} else if (e.em.checkBlockType(constrain(((int)this.x/100)+1,0,9), constrain(((int)(this.y+50)/100)-1,0,400)).equals("Gold")){
+        //  e.cashVal += 200;
+        //  e.console(str(e.cashVal));
+        //}
+        e.em.elements[constrain(((int)this.x/100)+1,0,9)][constrain(((int)(this.y+50)/100)-1,0,400)].hardness -= 0.5;
+        //e.console(str(e.em.elements[constrain(((int)this.x/100)+1,0,9)][constrain(((int)(this.y+50)/100)-1,0,400)].hardness));
+        if (e.em.elements[constrain(((int)this.x/100)+1,0,9)][constrain(((int)(this.y+50)/100)-1,0,400)].hardness <= 0){
+          if(e.em.checkBlockType(constrain(((int)this.x/100)+1,0,9), constrain(((int)(this.y+50)/100)-1,0,400)).equals("Iron")){
+            e.cashVal += 100;
+            e.console(str(e.cashVal));
+          } else if (e.em.checkBlockType(constrain(((int)this.x/100)+1,0,9), constrain(((int)(this.y+50)/100)-1,0,400)).equals("Gold")){
+            e.cashVal += 200;
+            e.console(str(e.cashVal));
+          }
+          e.em.destroyblock(constrain(((int)this.x/100)+1,0,9), constrain(((int)(this.y+50)/100)-1,0,400));
+        }
       }
-      if (e.em.checkBlockType((int)(this.x + 50) / 100, (int)((this.y) / 100)).equals("BlankTile") && e.em.checkBlockType((int)((this.x) + 50) / 100, (int)((this.y) / 100)).equals("BlankTile")) {
+      if (isMovingLeft && this.x >= 20 && y >= 50){
+        //e.console("left");
+        //if(e.em.checkBlockType(constrain(((int)this.x/100),0,9), constrain(((int)(this.y+50)/100)-1,0,400)).equals("Iron")){
+        //  e.cashVal += 100;
+        //  e.console(str(e.cashVal));
+        //} else if (e.em.checkBlockType(constrain(((int)this.x/100),0,9), constrain(((int)(this.y+50)/100)-1,0,400)).equals("Gold")){
+        //  e.cashVal += 200;
+        //  e.console(str(e.cashVal));
+        //}
+        e.em.elements[constrain(((int)this.x/100),0,9)][constrain(((int)(this.y+50)/100)-1,0,400)].hardness -= 0.5;
+        //e.console(str(e.em.elements[constrain(((int)this.x/100),0,9)][constrain(((int)(this.y+50)/100)-1,0,400)].hardness));
+        if (e.em.elements[constrain(((int)this.x/100),0,9)][constrain(((int)(this.y+50)/100)-1,0,400)].hardness <= 0){
+          if(e.em.checkBlockType(constrain(((int)this.x/100),0,9), constrain(((int)(this.y+50)/100)-1,0,400)).equals("Iron")){
+            e.cashVal += 100;
+            e.console(str(e.cashVal));
+          } else if (e.em.checkBlockType(constrain(((int)this.x/100),0,9), constrain(((int)(this.y+50)/100)-1,0,400)).equals("Gold")){
+            e.cashVal += 200;
+            e.console(str(e.cashVal));
+          }
+          e.em.destroyblock(constrain(((int)this.x/100),0,9), constrain(((int)(this.y+50)/100)-1,0,400));
+        }
+      }
+      if (e.em.checkBlockType((int)(this.x+50)/100, (int)(this.y/100)).equals("BlankTile") && e.em.checkBlockType((int)(this.x+50)/100, (int)(this.y/100)).equals("BlankTile")) {
         //e.console("empty");
         isMovingDown = true;
       } else {
@@ -109,8 +145,25 @@ class Player {
             e.console(str(e.cashVal));
             e.score += 10;
             e.hud.showCashVal();
+          //if(e.em.checkBlockType((int)(this.x+50)/100,(int)(this.y/100)).equals("Iron")){
+          //  e.cashVal += 100;
+          //  e.console(str(e.cashVal));
+          //} else if (e.em.checkBlockType((int)(this.x+50)/100,(int)(this.y/100)).equals("Gold")){
+          //  e.cashVal += 200;
+          //  e.console(str(e.cashVal));
+          //}
+          e.em.elements[(int)(this.x+50)/100][(int)(this.y/100)].hardness -= 0.5;
+          //e.console(str(e.em.elements[(int)(this.x+50)/100][(int)(this.y/100)].hardness));
+          if (e.em.elements[(int)(this.x+50)/100][(int)(this.y/100)].hardness <= 0){
+            if(e.em.checkBlockType((int)(this.x+50)/100,(int)(this.y/100)).equals("Iron")){
+              e.cashVal += 100;
+              e.console(str(e.cashVal));
+            } else if (e.em.checkBlockType((int)(this.x+50)/100,(int)(this.y/100)).equals("Gold")){
+              e.cashVal += 200;
+              e.console(str(e.cashVal));
+            }
+            e.em.destroyblock((int)(this.x+50)/100,(int)(this.y/100));
           }
-          e.em.destroyblock((int)(this.x + 50) / 100,(int)((this.y) / 100));
         }
         isMovingDown = false;
       }
@@ -139,14 +192,8 @@ class Player {
     if (isMovingLeft) {
       x -= xSpeed * ms;
     }
-    
     x = constrain(x, 0, 900);
-    //y = constrain(y, e.y(0), e.y(height-(size)));
   }
- 
-    
-    
-  
   
   void handleKeyPressed() {
     if (key == 'w' || key == 'W' || keyCode == UP) {
@@ -189,7 +236,6 @@ class Player {
 
   void display() {
     fuelLoss();
-    //e.console(str(y));
     if (facingRight) {
       image(playerRight, e.x(x), e.y(330), e.s(size*1.5), e.s(size));
     }
@@ -199,7 +245,6 @@ class Player {
     if (facingDown) {
       image(playerDown, e.x(x-30), e.y(330), e.s(size*2.25), e.s(size*1.5));
     }
-    //rect(e.x(this.x + 50), e.y(y + 50), 20, 20);
   }
   
   void fuelLoss(){
@@ -208,4 +253,5 @@ class Player {
      fuelStartTime = millis();
    }
   }
+  
 }
