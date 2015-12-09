@@ -61,6 +61,9 @@ class GasStation{
    if(e.player.fuel <= 2){
     e.hud.showingLowFuel = true; 
    }
+   else{
+    e.hud.showingLowFuel = false; 
+   }
   }
   
 }
