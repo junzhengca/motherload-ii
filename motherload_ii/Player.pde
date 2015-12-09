@@ -27,148 +27,34 @@ class Player {
     playerLeft = loadImage("playerVehicleLeft.png");
     playerDown = loadImage("playerVehicleDown.png");
   }
+  
+  String getBlockType(int x, int y){
+    return e.em.checkBlockType(constrain((int)x/100,0,9), constrain(((int)y / 100),0,3000));
+  }
+  
+  String getBlockType(float x, float y){
+    return getBlockType((int)ceil(x),(int)ceil(y));
+  }
 
   void move(float ms) {
-    if(this.y >= 0){
-      if (facingRight && this.x <= 800 && y >= 50){
-        //e.console("right");
-        if(e.em.checkBlockType(constrain(((int)this.x/100)+1,0,9), constrain(((int)(this.y + 50) / 100)-1,0,10000)).equals("Iron")){
-          if(mousePressed){
-            e.prevCashVal = e.cashVal;
-            e.cashVal += 100;
-            e.console(str(e.cashVal));
-            e.score += 5;
-            e.hud.showCashVal();
-          } else {
-            isMovingRight = false;
-          }
-        } else if (e.em.checkBlockType(constrain(((int)this.x/100)+1,0,9), constrain(((int)(this.y + 50) / 100)-1,0,10000)).equals("Gold")){
-          if(mousePressed){
-            e.prevCashVal = e.cashVal;
-            e.cashVal += 200;
-            e.console(str(e.cashVal));
-            e.score += 10;
-            e.hud.showCashVal();
-          } else {
-            isMovingRight = false;
-          }
-        } else if (e.em.checkBlockType(constrain(((int)this.x/100)+1,0,9), constrain(((int)(this.y + 50) / 100)-1,0,10000)).equals("Dirt")){
-          if(!mousePressed){
-            isMovingRight = false;
-          }
-        }
-        if(mousePressed) e.em.destroyblock(constrain(((int)this.x/100)+1,0,9), constrain(((int)(this.y + 50) / 100)-1,0,10000)); 
+    if(this.y >= 0){ //if player is under surface
+      if (facingRight && this.x <= 900 && y >= 50){ //facing right
+        if(mousePressed) mineElement(this.x + 100,this.y - 50); //if i do ceil() it will be 1 y index off for left and right
       }
-      if (facingLeft && this.x >= 20 && y >= 50){
-        if(e.em.checkBlockType(constrain(((int)this.x/100),0,9), constrain(((int)(this.y + 50) / 100)-1,0,10000)).equals("Iron")){
-          if(mousePressed){
-            e.prevCashVal = e.cashVal;
-            e.cashVal += 100;
-            e.console(str(e.cashVal));
-            e.score += 5;
-            e.hud.showCashVal();
-          } else {
-            isMovingLeft = false;
-          }
-        } else if (e.em.checkBlockType(constrain(((int)this.x/100),0,9), constrain(((int)(this.y + 50) / 100)-1,0,10000)).equals("Gold")){
-          if(mousePressed){
-            e.prevCashVal = e.cashVal;
-            e.cashVal += 200;
-            e.console(str(e.cashVal));
-            e.score += 10;
-            e.hud.showCashVal();
-          } else {
-            isMovingLeft = false;
-          }
-        } else if (e.em.checkBlockType(constrain(((int)this.x/100),0,9), constrain(((int)(this.y + 50) / 100)-1,0,10000)).equals("Dirt")){
-          if(!mousePressed){
-            isMovingLeft = false;
-          }
-        }
-        if(mousePressed) e.em.destroyblock(constrain(((int)this.x/100),0,9), constrain(((int)(this.y + 50) / 100)-1,0,10000)); 
-        //if(e.em.checkBlockType(constrain(((int)this.x/100)+1,0,9), constrain(((int)(this.y+50)/100)-1,0,400)).equals("Iron")){
-        //  e.cashVal += 100;
-        //  e.console(str(e.cashVal));
-        //} else if (e.em.checkBlockType(constrain(((int)this.x/100)+1,0,9), constrain(((int)(this.y+50)/100)-1,0,400)).equals("Gold")){
-        //  e.cashVal += 200;
-        //  e.console(str(e.cashVal));
-        //}
-        e.em.elements[constrain(((int)this.x/100)+1,0,9)][constrain(((int)(this.y+50)/100)-1,0,400)].hardness -= 0.5;
-        //e.console(str(e.em.elements[constrain(((int)this.x/100)+1,0,9)][constrain(((int)(this.y+50)/100)-1,0,400)].hardness));
-        if (e.em.elements[constrain(((int)this.x/100)+1,0,9)][constrain(((int)(this.y+50)/100)-1,0,400)].hardness <= 0){
-          if(e.em.checkBlockType(constrain(((int)this.x/100)+1,0,9), constrain(((int)(this.y+50)/100)-1,0,400)).equals("Iron")){
-            e.cashVal += 100;
-            e.console(str(e.cashVal));
-          } else if (e.em.checkBlockType(constrain(((int)this.x/100)+1,0,9), constrain(((int)(this.y+50)/100)-1,0,400)).equals("Gold")){
-            e.cashVal += 200;
-            e.console(str(e.cashVal));
-          }
-          e.em.destroyblock(constrain(((int)this.x/100)+1,0,9), constrain(((int)(this.y+50)/100)-1,0,400));
-        }
+      
+      if (facingLeft && this.x >= 20 && y >= 50){ //facing left
+        if(mousePressed) mineElement(this.x,this.y - 50);
       }
-      if (isMovingLeft && this.x >= 20 && y >= 50){
-        //e.console("left");
-        //if(e.em.checkBlockType(constrain(((int)this.x/100),0,9), constrain(((int)(this.y+50)/100)-1,0,400)).equals("Iron")){
-        //  e.cashVal += 100;
-        //  e.console(str(e.cashVal));
-        //} else if (e.em.checkBlockType(constrain(((int)this.x/100),0,9), constrain(((int)(this.y+50)/100)-1,0,400)).equals("Gold")){
-        //  e.cashVal += 200;
-        //  e.console(str(e.cashVal));
-        //}
-        e.em.elements[constrain(((int)this.x/100),0,9)][constrain(((int)(this.y+50)/100)-1,0,400)].hardness -= 0.5;
-        //e.console(str(e.em.elements[constrain(((int)this.x/100),0,9)][constrain(((int)(this.y+50)/100)-1,0,400)].hardness));
-        if (e.em.elements[constrain(((int)this.x/100),0,9)][constrain(((int)(this.y+50)/100)-1,0,400)].hardness <= 0){
-          if(e.em.checkBlockType(constrain(((int)this.x/100),0,9), constrain(((int)(this.y+50)/100)-1,0,400)).equals("Iron")){
-            e.cashVal += 100;
-            e.console(str(e.cashVal));
-          } else if (e.em.checkBlockType(constrain(((int)this.x/100),0,9), constrain(((int)(this.y+50)/100)-1,0,400)).equals("Gold")){
-            e.cashVal += 200;
-            e.console(str(e.cashVal));
-          }
-          e.em.destroyblock(constrain(((int)this.x/100),0,9), constrain(((int)(this.y+50)/100)-1,0,400));
-        }
+      
+      if (facingDown){ //facing down
+        if(mousePressed) mineElement(this.x + 50,this.y + 35);
       }
-      if (e.em.checkBlockType((int)(this.x+50)/100, (int)(this.y/100)).equals("BlankTile") && e.em.checkBlockType((int)(this.x+50)/100, (int)(this.y/100)).equals("BlankTile")) {
-        //e.console("empty");
-        isMovingDown = true;
-      } else {
-        if(mousePressed && facingDown){
-          if(e.em.checkBlockType((int)(this.x + 50) / 100,(int)((this.y) / 100)).equals("Iron")){
-            e.prevCashVal = e.cashVal;
-            e.cashVal += 100;
-            e.console(str(e.cashVal));
-            e.score += 5;
-            e.hud.showCashVal();
-          } else if (e.em.checkBlockType((int)(this.x + 50) / 100,(int)((this.y) / 100)).equals("Gold")){
-            e.prevCashVal = e.cashVal;
-            e.cashVal += 200;
-            e.console(str(e.cashVal));
-            e.score += 10;
-            e.hud.showCashVal();
-          //if(e.em.checkBlockType((int)(this.x+50)/100,(int)(this.y/100)).equals("Iron")){
-          //  e.cashVal += 100;
-          //  e.console(str(e.cashVal));
-          //} else if (e.em.checkBlockType((int)(this.x+50)/100,(int)(this.y/100)).equals("Gold")){
-          //  e.cashVal += 200;
-          //  e.console(str(e.cashVal));
-          //}
-          e.em.elements[(int)(this.x+50)/100][(int)(this.y/100)].hardness -= 0.5;
-          //e.console(str(e.em.elements[(int)(this.x+50)/100][(int)(this.y/100)].hardness));
-          if (e.em.elements[(int)(this.x+50)/100][(int)(this.y/100)].hardness <= 0){
-            if(e.em.checkBlockType((int)(this.x+50)/100,(int)(this.y/100)).equals("Iron")){
-              e.cashVal += 100;
-              e.console(str(e.cashVal));
-            } else if (e.em.checkBlockType((int)(this.x+50)/100,(int)(this.y/100)).equals("Gold")){
-              e.cashVal += 200;
-              e.console(str(e.cashVal));
-            }
-            e.em.destroyblock((int)(this.x+50)/100,(int)(this.y/100));
-          }
-        }
-        isMovingDown = false;
-      }
-    } else {
+    }
+    
+    if(getBlockType(x + 20,y).equals("BlankTile") && getBlockType(x + 70,y).equals("BlankTile")){
       isMovingDown = true;
+    } else {
+      isMovingDown = false;
     }
     
     
@@ -186,13 +72,42 @@ class Player {
       y += ySpeed * ms;
       offset += ySpeed * ms;
     }
-    if (isMovingRight) {
+    if (isMovingRight && getBlockType(x + 90,y - 50).equals("BlankTile")) {
       x += xSpeed * ms;
     }
-    if (isMovingLeft) {
+    if (isMovingLeft && getBlockType(x + 10,y - 50).equals("BlankTile")) {
       x -= xSpeed * ms;
     }
     x = constrain(x, 0, 900);
+  }
+  
+  void mineElement(int x, int y){
+    switch(getBlockType(x,y)){
+      case "Dirt":
+        e.prevCashVal = e.cashVal;
+        e.score += 1;
+        e.hud.showCashVal();
+      break;
+      case "Iron":
+        e.prevCashVal = e.cashVal;
+        e.cashVal += 100;
+        e.score += 5;
+        e.hud.showCashVal();
+      break;
+      case "Gold":
+        e.prevCashVal = e.cashVal;
+        e.cashVal += 200;
+        e.score += 10;
+        e.hud.showCashVal();
+      break;
+      default:
+      break;
+    }
+    e.em.destroyblock(constrain(((int)x/100),0,9), constrain(((int)y / 100),0,10000)); 
+  }
+  
+  void mineElement(float x, float y){
+    mineElement((int)x,(int)y);
   }
   
   void handleKeyPressed() {
@@ -245,6 +160,7 @@ class Player {
     if (facingDown) {
       image(playerDown, e.x(x-30), e.y(330), e.s(size*2.25), e.s(size*1.5));
     }
+    
   }
   
   void fuelLoss(){
