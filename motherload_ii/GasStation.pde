@@ -21,6 +21,7 @@ class GasStation{
   }
   
   void display(){
+    lowFuel();
     collision();
     setFill();
     fillGas();
@@ -54,6 +55,12 @@ class GasStation{
       e.player.fuel = 10; 
       e.cashVal -= 600;
     }
+  }
+  
+  void lowFuel(){
+   if(e.player.fuel <= 2){
+    e.hud.showingLowFuel = true; 
+   }
   }
   
 }

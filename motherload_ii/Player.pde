@@ -1,20 +1,20 @@
 class Player {
 
   Engine e;
-  float x, y, xSpeed, ySpeed, size, drillSpeed, offset;
+  float x, y, xSpeed, ySpeed, size, drillSpeed, offset,fuel;
   PImage playerRight, playerLeft, playerDown;
   boolean isMovingUp, isMovingDown, isMovingRight, isMovingLeft, facingLeft, facingRight, facingDown;
-  int fuel,fuelStartTime;
+  int fuelStartTime;
 
   Player(Engine e) {
     this.e = e;
     x = 100;
     y = 0;
     xSpeed = 0.05;
-    ySpeed = 0.05;
+    ySpeed = 0.07;
     offset = 0.0;
     size = 75;
-    fuel = 10;
+    fuel = 10.0;
     fuelStartTime = millis();
     facingRight = true;
     facingLeft = false;
