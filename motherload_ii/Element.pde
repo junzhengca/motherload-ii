@@ -1,3 +1,4 @@
+// Parent Class for all elements. Contains Variables for all elements including position,hardness, etc.
 class Element {
 
   int x, y, value, size,offset;
@@ -8,6 +9,7 @@ class Element {
   ElementManager em;
   PImage elementImg;
   
+  // Setting all variables passed through from when child calls the super constructor.
   Element(int _x, int _y, int _value, float _hardness, color _color, Engine theEngine, PImage img, ElementManager _em) {
     x = _x;
     y = _y;
@@ -23,16 +25,17 @@ class Element {
     this.elementImg.resize((int)e.actualSize(size), (int)e.actualSize(size));
   }
 
+  // if the elemenet should be drawn. Draw it at its location.
   void display() {
     if (isDrawn) {
-      //rectMode(CENTER);
       fill(theColor);
       noStroke();
-      //rect(e.actualPosition(x, y)[0], e.actualPosition(x, y - em.offset)[1], e.actualSize(size), e.actualSize(size));
       image(elementImg,e.actualPosition(x, y)[0], e.actualPosition(x, y - em.offset)[1]);
     }
   }
   
+  
+  // Checks if the element is on the screen based on where the player is. 
   void checkOnScreen(){
     if(offset+500 > this.x){
       isDrawn = true;
@@ -41,5 +44,4 @@ class Element {
       isDrawn = false;
     }
   }
-  
 }
