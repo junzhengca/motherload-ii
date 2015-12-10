@@ -20,6 +20,8 @@ class GasStation{
     nyanCat.resize((int)e.s(200),0);
   }
   
+  
+  // This functio calls all the other functions and displays the gas station. 
   void display(){
     lowFuel();
     collision();
@@ -29,6 +31,8 @@ class GasStation{
     image(nyanCat,e.actualPosition(x,y)[0], e.actualPosition(x,y - em.offset)[1]);
   }
   
+  
+  // This function checks to see if the player is touching the gas station.
   void collision(){
     if(e.player.x+e.player.size > this.x && e.player.x < this.x+200 && e.player.y+e.player.size > this.y && e.player.y-10 < this.y+120){
       touchingPlayer = true;
@@ -37,6 +41,7 @@ class GasStation{
       touchingPlayer = false;
     }
   }
+  
   
   void setFill(){
     if(touchingPlayer && e.player.fuel == 10){
@@ -50,6 +55,8 @@ class GasStation{
     fill(fillColor);
   }
   
+  
+  // Function that fills the players gas tank if the have enough money, are touching the gas station, and the didnt just fill up.
   void fillGas(){
     if(touchingPlayer && e.cashVal >= 600 && e.player.fuel < 9){
       e.player.fuel = 10; 
@@ -57,13 +64,14 @@ class GasStation{
     }
   }
   
+  
   void lowFuel(){
-   if(e.player.fuel <= 2){
-    e.hud.showingLowFuel = true; 
-   }
-   else{
-    e.hud.showingLowFuel = false; 
-   }
+    if(e.player.fuel <= 2){
+      e.hud.showingLowFuel = true; 
+    }
+    else{
+      e.hud.showingLowFuel = false; 
+    }
   }
   
 }

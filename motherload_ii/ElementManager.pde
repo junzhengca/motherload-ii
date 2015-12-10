@@ -1,3 +1,4 @@
+// Class for storing and dealing with the elements in the map. Has multiple methods that deal with elements. 
 class ElementManager {
 
   Element[][] elements;
@@ -19,6 +20,8 @@ class ElementManager {
     blankImage = loadImage("blank.png");
   }
 
+
+  // This function creates the map of elements and stores it in a 2D Object array. 
   void createMap() {
     for (int y = 0; y < 300; y ++) {
       for (int x = 0; x <10; x ++) {
@@ -40,9 +43,11 @@ class ElementManager {
     }
   }
 
+
   void setOffset(float val) {
     this.offset = val;
   }
+
 
   void display() {
     for (int y = 0; y < 300; y ++) {
@@ -61,10 +66,14 @@ class ElementManager {
     rect(e.x((int)e.player.x + 70),e.y((int)e.player.y - offset),5,5); //right bottom collision
   }
 
+
+  // This function takes in the indexes for the block in the array and "Destroys" it. (Turns it into a blank tile)
   void destroyblock(int xIndex, int yIndex) {
     elements[xIndex][yIndex] = new BlankTile(e, xIndex*100, yIndex*100,blankImage, this);
   }
 
+
+  // this function takes in the indexes for the block in the array and returns what type of element it is. 
   String checkBlockType(int xIndex, int yIndex) {
     String className = split(elements[xIndex][yIndex].getClass().getName(), "$")[1]; //Get object's class name
     return className;
