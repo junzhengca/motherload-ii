@@ -33,14 +33,17 @@ class Player {
     playerDown = loadImage("playerVehicleDown.png");
   }
   
+  
   //Class functions
   String getBlockType(int x, int y){
     return e.em.checkBlockType(constrain((int)x/100,0,9), constrain(((int)y / 100),0,3000));
   }
   
+  
   String getBlockType(float x, float y){
     return getBlockType((int)ceil(x),(int)ceil(y));
   }
+
 
   void move(float ms) {
     if(this.y >= 0){ //if player is under surface
@@ -91,9 +94,11 @@ class Player {
     x = constrain(x, 0, 900);
   }
   
+  
   //Detorying elements when the player mines for them
   void mineElement(int x, int y, float ms){
     currentHardness = e.em.elements[constrain(((int)x/100),0,9)][constrain(((int)y / 100),0,10000)].hardness;        //Gets hardness value of particular element being mined
+    
     switch(getBlockType(x,y)){
       case "Dirt":
         //Increases the amount of time the player has been mining this particular element for
@@ -122,6 +127,7 @@ class Player {
         currentPressTime = 0;
       break;
     }
+    
     if(currentPressTime > currentHardness * 1000){        //Checks to see if element needs to be destroyed
       currentPressTime = 0;
       //Increases the total money and score of the player according to the element being mined
@@ -151,9 +157,11 @@ class Player {
     }
   }
   
+  
   void mineElement(float x, float y, float ms){
     mineElement((int)x,(int)y,ms);
   }
+  
   
   //Reacts to when key is pressed (for player movement)
   void handleKeyPressed() {
@@ -180,6 +188,7 @@ class Player {
     }
   }
   
+  
   //Reacts to when key is released (for player movement)
   void handleKeyReleased() {
     if (key == 'w' || key == 'W' || keyCode == UP) {
@@ -196,6 +205,7 @@ class Player {
     }
   }
 
+
   //Displays the player according to the direction it is facing
   void display() {
     fuelLoss();
@@ -210,6 +220,7 @@ class Player {
     }
     rect(0,0,(currentPressTime / (currentHardness * 1000)) * 100,e.s(20));        //How long the player has been mining an element for
   }
+  
   
   //Player fuel being lost over time
   void fuelLoss(){
