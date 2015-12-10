@@ -35,6 +35,7 @@ class Player {
   
   
   //Class functions
+  //Returns the type of the element that is around the player, for use in other functions within the class
   String getBlockType(int x, int y){
     return e.em.checkBlockType(constrain((int)x/100,0,9), constrain(((int)y / 100),0,3000));
   }
@@ -45,6 +46,7 @@ class Player {
   }
 
 
+  //Player Movement
   void move(float ms) {
     if(this.y >= 0){ //if player is under surface
       if (facingRight && this.x <= 900 && y >= 50){ //facing right
@@ -158,6 +160,7 @@ class Player {
   }
   
   
+  //Changes values of co-ordinates from floats to ints
   void mineElement(float x, float y, float ms){
     mineElement((int)x,(int)y,ms);
   }
