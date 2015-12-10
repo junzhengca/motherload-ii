@@ -16,9 +16,9 @@ void draw(){
 }
 
 void keyPressed(){
-  e.player.handleKeyPressed();
+  e.player.handleKeyPressed();        //Checks for when key is pressed, for the Player class (for movement)
 }
 
 void keyReleased(){
-  e.player.handleKeyReleased();
+  e.player.handleKeyReleased();        //Checks for when key is released, for the Player class (for movement)
 }

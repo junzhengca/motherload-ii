@@ -1,5 +1,7 @@
+//Player class that holds all necessary information for a Player object when/if created
 class Player {
-
+  
+  //Class variables
   Engine e;
   float x, y, xSpeed, ySpeed, size, offset,fuel;
   PImage playerRight, playerLeft, playerDown;
@@ -8,6 +10,7 @@ class Player {
   float currentPressTime = 0;
   float currentHardness = 0;
 
+  //Constructor
   Player(Engine e) {
     this.e = e;
     x = 100;
@@ -30,6 +33,7 @@ class Player {
     playerDown = loadImage("playerVehicleDown.png");
   }
   
+  //Class functions
   String getBlockType(int x, int y){
     return e.em.checkBlockType(constrain((int)x/100,0,9), constrain(((int)y / 100),0,3000));
   }
@@ -59,38 +63,42 @@ class Player {
       }
     }
     
+    //If block underneath the player is empty, this makes the player fall to the next level 
     if(getBlockType(x + 20,y).equals("BlankTile") && getBlockType(x + 70,y).equals("BlankTile") || y <= 0){
       isMovingDown = true;
     } else {
       isMovingDown = false;
     }
     
-    if (isMovingUp) {
-      if (e.em.checkBlockType((int)(this.x + 50) / 100, constrain((int)((this.y) / 100) - 1,0,1000000)).equals("BlankTile") && e.em.checkBlockType((int)((this.x) + 50) / 100, constrain((int)((this.y) / 100) - 1,0,1000000)).equals("BlankTile")) {
+    //Player Movement
+    if (isMovingUp) {        //If block above the player is empty, this allows the player to fly up
+      if (e.em.checkBlockType((int)(this.x + 50) / 100, constrain((int)((this.y) / 100) - 1,0,1000000)).equals("BlankTile") && e.em.checkBlockType((int)((this.x) + 50) / 100, constrain((int)((this.y) / 100) - 1,0,1000000)).equals("BlankTile")) {        //Checks for block above the player
         //e.console("empty");
-        //isMovingDown = true;
-        y -= ySpeed * 2 *  ms;
         //offset -= ySpeed * 2 *  ms;
+        y -= ySpeed * 2 *  ms;
       }
     }
     if (isMovingDown){
       y += ySpeed * ms;
       offset += ySpeed * ms;
     }
-    if (isMovingRight && (getBlockType(x + 90,y - 50).equals("BlankTile") || y <= 20)) {
+    if (isMovingRight && (getBlockType(x + 90,y - 50).equals("BlankTile") || y <= 20)) {        //Checks for block right of player (if empty)
       x += xSpeed * ms;
     }
-    if (isMovingLeft && (getBlockType(x + 10,y - 50).equals("BlankTile") || y <= 20)) {
+    if (isMovingLeft && (getBlockType(x + 10,y - 50).equals("BlankTile") || y <= 20)) {        //Checks for block left of player (if empty)
       x -= xSpeed * ms;
     }
     x = constrain(x, 0, 900);
   }
   
+  //Detorying elements when the player mines for them
   void mineElement(int x, int y, float ms){
-    currentHardness = e.em.elements[constrain(((int)x/100),0,9)][constrain(((int)y / 100),0,10000)].hardness;
+    currentHardness = e.em.elements[constrain(((int)x/100),0,9)][constrain(((int)y / 100),0,10000)].hardness;        //Gets hardness value of particular element being mined
     switch(getBlockType(x,y)){
       case "Dirt":
+        //Increases the amount of time the player has been mining this particular element for
         currentPressTime += ms;
+        //Changes image of element when image is half-mined to let player know of it
         if (currentPressTime > currentHardness * 500 && currentPressTime < currentHardness * 1000){
           e.em.elements[constrain(((int)x/100),0,9)][constrain(((int)y / 100),0,10000)].elementImg = e.em.dirtHalfImage;
           e.em.elements[constrain(((int)x/100),0,9)][constrain(((int)y / 100),0,10000)].elementImg.resize((int)e.s(e.em.elements[constrain(((int)x/100),0,9)][constrain(((int)y / 100),0,10000)].size), (int)e.s(e.em.elements[constrain(((int)x/100),0,9)][constrain(((int)y / 100),0,10000)].size));
@@ -114,8 +122,9 @@ class Player {
         currentPressTime = 0;
       break;
     }
-    if(currentPressTime > currentHardness * 1000){
+    if(currentPressTime > currentHardness * 1000){        //Checks to see if element needs to be destroyed
       currentPressTime = 0;
+      //Increases the total money and score of the player according to the element being mined
       switch(getBlockType(x,y)){
         case "Dirt":
           e.prevCashVal = e.cashVal;
@@ -138,7 +147,7 @@ class Player {
           currentPressTime = 0;
         break;
       }
-      e.em.destroyblock(constrain(((int)x/100),0,9), constrain(((int)y / 100),0,10000)); 
+      e.em.destroyblock(constrain(((int)x/100),0,9), constrain(((int)y / 100),0,10000));        //Destroys the element
     }
   }
   
@@ -146,6 +155,7 @@ class Player {
     mineElement((int)x,(int)y,ms);
   }
   
+  //Reacts to when key is pressed (for player movement)
   void handleKeyPressed() {
     if (key == 'w' || key == 'W' || keyCode == UP) {
       isMovingUp = true;
@@ -169,7 +179,8 @@ class Player {
       facingRight = false;
     }
   }
-
+  
+  //Reacts to when key is released (for player movement)
   void handleKeyReleased() {
     if (key == 'w' || key == 'W' || keyCode == UP) {
       isMovingUp = false;
@@ -185,6 +196,7 @@ class Player {
     }
   }
 
+  //Displays the player according to the direction it is facing
   void display() {
     fuelLoss();
     if (facingRight) {
@@ -196,9 +208,10 @@ class Player {
     if (facingDown) {
       image(playerDown, e.x(x-30), e.y(330), e.s(size*2.25), e.s(size*1.5));
     }
-    rect(0,0,(currentPressTime / (currentHardness * 1000)) * 100,e.s(20));
+    rect(0,0,(currentPressTime / (currentHardness * 1000)) * 100,e.s(20));        //How long the player has been mining an element for
   }
   
+  //Player fuel being lost over time
   void fuelLoss(){
     if(millis() > fuelStartTime + 5000 && fuel > 0){
       fuel--;

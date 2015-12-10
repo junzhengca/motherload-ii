@@ -1,7 +1,7 @@
-// Parent Class for all elements. Contains Variables for all elements including position,hardness, etc.
+// Parent Class for all elements. Contains Variables for all elements including position, hardness, etc.
 class Element {
 
-  int x, y, value, size, offset;
+  int x, y, size, offset;
   float hardness;
   color theColor;
   Engine e;
@@ -10,11 +10,10 @@ class Element {
   PImage elementImg;
   
   // Setting all variables passed through from when child calls the super constructor.
-  Element(int _x, int _y, int _value, float _hardness, color _color, Engine theEngine, PImage img, ElementManager _em) {
+  Element(int _x, int _y, float _hardness, color _color, Engine theEngine, PImage img, ElementManager _em) {
     x = _x;
     y = _y;
     size = 100;
-    value = _value;
     hardness = _hardness;
     theColor = _color;
     e = theEngine;
