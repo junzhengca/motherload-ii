@@ -1,3 +1,4 @@
+// Class for the Gas Station. Used to fill the players gas tank
 class GasStation{
   
   int x,y;
@@ -5,7 +6,6 @@ class GasStation{
   Player p;
   boolean touchingPlayer;
   ElementManager em;
-  color fillColor;
   PImage nyanCat;
   
   GasStation(Engine theEngine, Player thePlayer, ElementManager em_){
@@ -15,17 +15,16 @@ class GasStation{
     em = em_;
     x = 300;
     y = -120;
-    fillColor = color(0,255,0);
     nyanCat = loadImage("nyan-cat.png");
     nyanCat.resize((int)e.s(200),0);
   }
   
   
-  // This functio calls all the other functions and displays the gas station. 
+  // This function calls all the other functions and displays the gas station. 
   void display(){
     lowFuel();
     collision();
-    setFill();
+    flashFull();
     fillGas();
     rectMode(CORNER);
     image(nyanCat,e.actualPosition(x,y)[0], e.actualPosition(x,y - em.offset)[1]);
@@ -43,20 +42,18 @@ class GasStation{
   }
   
   
-  void setFill(){
+  // Function that notifies the HUD to flash to the screen when the players tank has been filled. 
+  void flashFull(){
     if(touchingPlayer && e.player.fuel == 10){
-      fillColor = color(255,0,0);
       e.hud.showingFuelMessage = true;
     }
     else{
-      fillColor = color(0,255,0);
       e.hud.showingFuelMessage = false;
     }
-    fill(fillColor);
   }
   
   
-  // Function that fills the players gas tank if the have enough money, are touching the gas station, and the didnt just fill up.
+  // Function that fills the players gas tank if the have enough money, are touching the gas station, and they didnt just fill up.
   void fillGas(){
     if(touchingPlayer && e.cashVal >= 600 && e.player.fuel < 9){
       e.player.fuel = 10; 
@@ -65,6 +62,7 @@ class GasStation{
   }
   
   
+  // This function notifies the HUD to flash to the screen if the player is low on fuel.
   void lowFuel(){
     if(e.player.fuel <= 2){
       e.hud.showingLowFuel = true; 

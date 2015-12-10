@@ -24,6 +24,7 @@ class Element {
     this.elementImg.resize((int)e.actualSize(size), (int)e.actualSize(size));
   }
 
+
   // if the elemenet should be drawn. Draw it at its location.
   void display() {
     if (isDrawn) {
@@ -36,7 +37,7 @@ class Element {
   
   // Checks if the element is on the screen based on where the player is. 
   void checkOnScreen(){
-    if(offset+500 > this.x){
+    if(offset+500 > this.y){
       isDrawn = true;
     }
     else{

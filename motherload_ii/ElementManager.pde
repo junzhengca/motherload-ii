@@ -23,9 +23,11 @@ class ElementManager {
 
   // This function creates the map of elements and stores it in a 2D Object array. 
   void createMap() {
+    // Iterate over 2D array and with 2 for loops. Create a random number and generate a tile based on that number. 
     for (int y = 0; y < 300; y ++) {
       for (int x = 0; x <10; x ++) {
         if (y == 0 || y ==1) {
+          //First 2 rows will always be dirt. 
           elements[x][y] = new Dirt(e, x*100, y*100,dirtImage, this);
         } else {
           randomNum = int(random(1, 12));
@@ -44,11 +46,13 @@ class ElementManager {
   }
 
 
+  // Set the offset. Used for drawing in relation to the player.
   void setOffset(float val) {
     this.offset = val;
   }
 
 
+  // Iterates over the entire array and calls each objects display Function
   void display() {
     for (int y = 0; y < 300; y ++) {
       for (int x = 0; x <10; x ++) {

@@ -1,3 +1,4 @@
+// Class that handles the HUD and all messages displayed to the screen. 
 class HUD {
 
   Engine e;
@@ -5,6 +6,7 @@ class HUD {
   int startCashDisplay;
   boolean showingFuelMessage = false, showingCashDisplay = false, showingLowFuel = false;
   float fuelHeight;
+
 
   HUD(Engine theEngine) {
     e = theEngine;
@@ -19,14 +21,20 @@ class HUD {
 
   void printToScreen() {
     fill(255, 0, 0);
+    // Set fuel height based on current fuel and draw the rectangle inside the tank
     fuelHeight = e.player.fuel*10-10;
     fuelHeight = constrain(fuelHeight, 0, 100);
     rect(e.x(115), e.y(197-fuelHeight), e.actualSize(65), e.actualSize(fuelHeight));
     image(tank, e.actualPosition(100, 100)[0], e.actualPosition(100, 100)[1], e.actualSize(100), e.actualSize(100));
+    
+    // If the messeages flashed to the screen should be shown, show them. 
     if (showingFuelMessage) showFuelLevelFull();
     if (showingLowFuel) showLowFuel();
+    // Calling the functions to display score and amount of money in bank.
     showScore();
     showMoneyInBank();
+    
+    // Display the value of the element just mined for 2 seconds. 
     if (millis() < startCashDisplay + 1000) {
       if (showingCashDisplay) {
         textSize(e.s(32));
@@ -55,7 +63,7 @@ class HUD {
   }
 
 
-  // Function that displays the players score to the screen
+  // Function that displays the player's score to the screen
   void showScore() {
     textAlign(LEFT);
     textSize(e.s(40));
@@ -64,15 +72,12 @@ class HUD {
   }
 
  
- // Function that 
+ // Function that displays the cash value of the element just mined as well as showed the gas tank icon. The fill amount is based on how much fuel the player has left.
   void showCashVal() {
     startCashDisplay = millis();
     showingCashDisplay = true;
     textSize(32);
     fill(255, 0, 0);
-    fuelHeight = e.player.fuel*10;
-    rect(e.x(115), e.y(197-fuelHeight), e.actualSize(65), e.actualSize(fuelHeight));
-    image(tank, e.actualPosition(100, 100)[0], e.actualPosition(100, 100)[1], e.actualSize(100), e.actualSize(100));
   }
 
 
