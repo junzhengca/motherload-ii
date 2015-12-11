@@ -48,20 +48,20 @@ class Player {
 
   //Player Movement
   void move(float ms) {
-    if(this.y >= 0){ //if player is under surface
-      if (facingRight && this.x <= 900 && y >= 50){ //facing right
+    if(this.y >= 0){        //if player is under surface
+      if (facingRight && this.x <= 900 && y >= 50){        //facing right
         if(mousePressed){
-          mineElement(this.x + 100,this.y - 50,ms); //if i do ceil() it will be 1 y index off for left and right
+          mineElement(this.x + 100,this.y - 50,ms);        //if i do ceil() it will be 1 y index off for left and right
         }
       }
       
-      if (facingLeft && this.x >= 20 && y >= 50){ //facing left
+      if (facingLeft && this.x >= 20 && y >= 50){        //facing left
         if(mousePressed){
           mineElement(this.x,this.y - 50,ms);
         }
       }
       
-      if (facingDown){ //facing down
+      if (facingDown){        //facing down
         if(mousePressed){
           mineElement(this.x + 50,this.y + 35,ms);
         }
@@ -78,8 +78,6 @@ class Player {
     //Player Movement
     if (isMovingUp) {        //If block above the player is empty, this allows the player to fly up
       if (e.em.checkBlockType((int)(this.x + 50) / 100, constrain((int)((this.y) / 100) - 1,0,1000000)).equals("BlankTile") && e.em.checkBlockType((int)((this.x) + 50) / 100, constrain((int)((this.y) / 100) - 1,0,1000000)).equals("BlankTile")) {        //Checks for block above the player
-        //e.console("empty");
-        //offset -= ySpeed * 2 *  ms;
         y -= ySpeed * 2 *  ms;
       }
     }
@@ -172,7 +170,6 @@ class Player {
       isMovingUp = true;
     }
     if (key == 's' || key == 'S' || keyCode == DOWN) {
-      //isMovingDown = true;
       facingDown = true;
       facingLeft = false;
       facingRight = false;
