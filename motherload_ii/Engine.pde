@@ -40,14 +40,18 @@ class Engine {
     hud = new HUD(this);
   }
 
+
+  //Returns the "real" size in pixels, because we have to deal with different resolutions
   float actualSize(float value) {
     return value * this.scaleRatio;
   }
   
+  //An alias for actualSize()
   float s(float value){
     return this.actualSize(value);
   }
-
+  
+  //Returns the "real" position in array [x,y]
   float[] actualPosition(float x, float y) {
     float[] result = new float[]{x * scaleRatio, y * scaleRatio};
 
@@ -60,14 +64,18 @@ class Engine {
     return result;
   }
   
+  
+  //An alias for actualPosition(x,y)[0]
   float x(float x){
     return this.actualPosition(x,0)[0];
   }
   
+  //An alias for actualPosition(x,y)[1]
   float y(float y){
     return this.actualPosition(0,y)[1];
   }
 
+  //Refreash the screen size
   void updateScreenSize() {
     this.w = width;
     this.h = height;
@@ -78,16 +86,18 @@ class Engine {
     }
   }
   
+  //A debug console, we are using fullScreen() so we could not see the default one
   void console(String m){
     this.debugMessage = m + "\n" + this.debugMessage;
   }
 
-
+  //Draw background
   void drawBackground() {
     fill(0);
     rect(actualPosition(0, 0)[0], actualPosition(0, 0)[1], actualSize(actualW), actualSize(actualW));
   }
 
+  //Just like draw() function, but with ms value to make sure game speed stays the same
   void tick(float ms) {
     updateScreenSize();
     drawBackground();

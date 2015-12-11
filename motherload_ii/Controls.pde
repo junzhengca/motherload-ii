@@ -1,3 +1,4 @@
+//A class for buttons
 class Button {
   
   //Class variables
@@ -37,6 +38,7 @@ class Button {
   
 }
 
+//Main menu's start button
 class StartButton extends Button {
   
   PImage defaultImg, hoverImg;

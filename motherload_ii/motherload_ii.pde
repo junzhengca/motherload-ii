@@ -1,3 +1,12 @@
+/*
+  Computer Science 30 Pair Programming Assignment
+  A remake of the game Motherload
+  Copyright Jack, Lars, Bishal All Rights Reserved
+  License : MIT
+  Full Git repo is avaliable at : https://github.com/kiroshiime/motherload-ii
+**/
+
+
 import java.lang.*;
 Engine e;
 int lastMillis;
@@ -5,7 +14,7 @@ int lastMillis;
 void setup(){
   e = new Engine();
   lastMillis = (int)System.nanoTime() / 100000;
-  size(500,500);
+  fullScreen();
   frameRate(120);
 }
 

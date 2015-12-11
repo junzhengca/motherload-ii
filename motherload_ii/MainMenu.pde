@@ -34,6 +34,7 @@ class MainMenu {
     }
   }
   
+  //Hide the main menu
   void hide(float ms){
     mainMenuTitleY -= 0.5 * ms;
     mainMenuDrillerOpacity -= 0.5 * ms;
@@ -44,11 +45,13 @@ class MainMenu {
     }
   }
   
+  //Start button clicked event
   void startButtonClicked(){
     animationTime = 0;
     hiding = true;
   }
   
+  //Just like draw function, but with ms value to make sure the game speed stays the same
   void tick(float ms){
     animationTime+=ms;
     tint(255,255,255,mainMenuOpacity);
