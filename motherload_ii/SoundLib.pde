@@ -2,9 +2,13 @@ import javax.sound.sampled.*;
 import javax.sound.sampled.LineEvent.Type;
 
 class SoundPlayer {
+  
+  //Class variables
   File soundFile;
   AsyncSoundPlayer asp;
   Thread thread;
+  
+  //Constructor
   SoundPlayer(String fileName){
     try {
       this.soundFile = new File(fileName);

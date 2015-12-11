@@ -1,10 +1,12 @@
 class Button {
   
+  //Class variables
   Engine e;
   float x,y,w,h;
   boolean mouseOver = false;
   boolean mouseDown = false;
   
+  //Constructor
   Button(Engine e, float x,float y,float w,float h){
     this.x = x;
     this.y = y;

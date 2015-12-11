@@ -1,13 +1,14 @@
 // Class that handles the HUD and all messages displayed to the screen. 
 class HUD {
 
+  //Class variables
   Engine e;
   PImage tank, fuelLevelImage, fuelLow;
   int startCashDisplay;
   boolean showingFuelMessage = false, showingCashDisplay = false, showingLowFuel = false;
   float fuelHeight;
 
-
+  //Constructor
   HUD(Engine theEngine) {
     e = theEngine;
     tank = loadImage("Fuel-icon.png");

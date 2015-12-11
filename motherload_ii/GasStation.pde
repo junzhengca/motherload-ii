@@ -1,6 +1,7 @@
 // Class for the Gas Station. Used to fill the players gas tank
 class GasStation{
   
+  //Class variables
   int x,y;
   Engine e;
   Player p;
@@ -8,6 +9,7 @@ class GasStation{
   ElementManager em;
   PImage nyanCat;
   
+  //Constructor
   GasStation(Engine theEngine, Player thePlayer, ElementManager em_){
     e = theEngine;
     p = thePlayer;

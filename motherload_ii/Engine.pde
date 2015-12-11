@@ -1,5 +1,6 @@
 class Engine {
   
+  //Class variables
   float w, h, scaleRatio;
   float actualW;
   int currentFrame = 0;
@@ -18,6 +19,7 @@ class Engine {
   int highScore = 0;
   String highScoreName = "";
   
+  //Constructor
   Engine() {
     this.actualW = 1000.f;
     highScoreJson = loadJSONObject("data/highscore.json");

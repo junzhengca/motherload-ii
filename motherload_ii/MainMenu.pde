@@ -1,5 +1,6 @@
 class MainMenu {
   
+  //Class variables
   Engine e;
   PImage drillerImg, backgroundImg, mainMenuTitleImg;
   float animationTime = 0;
@@ -14,6 +15,7 @@ class MainMenu {
   String highScoreName = "";
   SoundPlayer sp;
   
+  //Constructor
   MainMenu(Engine e){
     this.e = e;
     drillerImg = loadImage("main-menu-driller.png");

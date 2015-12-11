@@ -1,12 +1,14 @@
 // Class for storing and dealing with the elements in the map. Has multiple methods that deal with elements. 
 class ElementManager {
-
+  
+  //Class variables
   Element[][] elements;
   int w, h, randomNum;
   float offset = 0;
   Engine e;
   PImage dirtImage, dirtHalfImage, goldImage, goldHalfImage, ironImage, ironHalfImage, blankImage;
 
+  //Constructor
   ElementManager(Engine e_) {
     w = 1000;
     e = e_;

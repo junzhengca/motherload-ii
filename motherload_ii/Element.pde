@@ -1,6 +1,7 @@
 // Parent Class for all elements. Contains Variables for all elements including position, hardness, etc.
 class Element {
-
+  
+  //Class variables
   int x, y, size, offset;
   float hardness;
   color theColor;
